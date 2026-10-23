@@ -356,3 +356,12 @@ h3 { letter-spacing:-.025em; }
 /* Резервирование места для изображения с lazy-loading без скачков высоты */
 .guide-photo { height:auto; }
 @media (max-width:760px) { .site-nav { top:56px; } }
+
+/* Правки 24.10 (Claude): на телефоне карта не вылезает за край, море на первом экране видно */
+@media (max-width: 860px) {
+  .map-frame { aspect-ratio: auto; height: 340px; min-height: 0; }
+}
+@media (max-width: 760px) {
+  .hero::after { background: linear-gradient(180deg, rgba(3,30,36,.05) 0%, rgba(3,30,36,.12) 28%, rgba(4,30,35,.72) 58%, rgba(4,30,35,.95) 100%); }
+  .hero-inner { padding-top: 300px; }
+}
