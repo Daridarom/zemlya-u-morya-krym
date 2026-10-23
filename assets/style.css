@@ -368,3 +368,40 @@ h3 { letter-spacing:-.025em; }
   .hero::after { display: none; }
   .hero-inner { padding-top: 22px; padding-bottom: 32px; }
 }
+
+/* 360° обзор соседнего проекта «Азгард». Внешний плеер подключается только по нажатию. */
+.tour-section { background:#e9f1ec; color:var(--text); }
+.tour-layout { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(26px,4vw,60px); align-items:center; }
+.tour-copy h2 { max-width:17ch; font-size:clamp(27px,3.2vw,39px); }
+.tour-lead { color:#355960; line-height:1.65; font-size:17px; }
+.tour-clarification { margin:25px 0; border-left:3px solid #62a9a1; padding:13px 16px; background:rgba(255,255,255,.64); border-radius:0 9px 9px 0; color:#3d5a60; font-size:14px; line-height:1.65; }
+.tour-clarification strong { color:var(--ink); }
+.tour-personal-link { display:inline-flex; align-items:center; gap:14px; padding:14px 18px; border-radius:12px; background:var(--ink); color:white; text-decoration:none; font-weight:600; line-height:1.3; }
+.tour-personal-link:hover { background:#195764; }
+.tour-view { min-width:0; }
+.tour-start { display:block; position:relative; width:100%; min-height:250px; padding:0; overflow:hidden; border:0; border-radius:18px; box-shadow:0 16px 38px rgba(18,54,55,.15); background:#234a4c; cursor:pointer; aspect-ratio:11/7; color:#fff; text-align:center; }
+.tour-start::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(9,35,40,.8),transparent 51%); }
+.tour-start img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; transition:transform .25s; }
+.tour-start:hover img { transform:scale(1.03); }
+.tour-start-circle { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:grid; place-items:center; z-index:1; width:104px; height:104px; border:2px solid rgba(255,255,255,.95); border-radius:50%; background:rgba(12,55,62,.54); backdrop-filter:blur(4px); font:700 26px/1 "Unbounded",sans-serif; }
+.tour-start-label { position:absolute; z-index:1; left:24px; right:24px; bottom:24px; font-size:16px; font-weight:600; text-shadow:0 1px 5px #173a3d; }
+.tour-view-foot { display:flex; gap:12px; flex-wrap:wrap; justify-content:space-between; font-size:12px; line-height:1.55; padding:12px 3px 0; color:#527078; }
+.tour-view-foot span { flex:1 1 190px; }
+.tour-view-foot a { flex:none; color:#145a63; font-weight:600; text-underline-offset:3px; }
+.tour-player { min-width:0; border-radius:18px; background:#102d34; overflow:hidden; box-shadow:0 16px 38px rgba(18,54,55,.15); }
+.tour-player[hidden], .tour-start[hidden] { display:none !important; }
+.tour-player-top { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 14px; color:white; font-size:13px; font-weight:600; }
+.tour-player-top button { flex:none; padding:8px 12px; border:1px solid #9ec5c0; background:transparent; border-radius:8px; color:white; cursor:pointer; }
+.tour-player-top button:hover { background:rgba(255,255,255,.13); }
+.tour-frame { position:relative; aspect-ratio:11/7; min-height:260px; background:#204c55; }
+.tour-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+@media(max-width:860px) { .tour-layout { grid-template-columns:1fr; } .tour-copy h2 { max-width:none; } .tour-view { max-width:700px; } }
+@media(max-width:430px) { .tour-section { padding-block:52px; } .tour-start { min-height:240px; } .tour-start-circle { width:82px; height:82px; font-size:21px; } .tour-start-label { font-size:14px; left:12px; right:12px; bottom:18px; } .tour-frame { min-height:260px; } .tour-view-foot { font-size:12px; } }
+/* Защита узких экранов: форма не увеличивает ширину всей страницы. */
+@media(max-width:860px) {
+  .req-grid { grid-template-columns:minmax(0,1fr); }
+  .req-grid > *, .req-form, .req-form fieldset { min-width:0; }
+}
+@media(max-width:520px) {
+  .req-form .channel { grid-template-columns:1fr; }
+}

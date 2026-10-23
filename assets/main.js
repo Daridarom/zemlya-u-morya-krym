@@ -52,6 +52,37 @@ const FORM_ENDPOINT = '';
       });
   });
 
+  // Виртуальный тур «Азгард»: сторонний Pano2VR загружается только после нажатия.
+  // Тур показывает окрестности и соседний проект, а не конкретные продаваемые участки.
+  const tourStart = document.getElementById('tour-start');
+  const tourPlayer = document.getElementById('tour-player');
+  const tourFrame = document.getElementById('tour-frame');
+  const tourClose = document.getElementById('tour-close');
+  if (tourStart && tourPlayer && tourFrame && tourClose) {
+    tourStart.addEventListener('click', function () {
+      if (tourFrame.querySelector('iframe')) return;
+      const iframe = document.createElement('iframe');
+      iframe.title = 'Панорамный 3D-тур территории проекта «Азгард»';
+      iframe.src = 'https://azgard-crimea.ru/';
+      iframe.allow = 'fullscreen; accelerometer; gyroscope';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'no-referrer';
+      iframe.loading = 'eager';
+      tourFrame.appendChild(iframe);
+      tourPlayer.hidden = false;
+      tourStart.hidden = true;
+      tourStart.setAttribute('aria-expanded', 'true');
+      tourClose.focus();
+    });
+    tourClose.addEventListener('click', function () {
+      tourFrame.replaceChildren();
+      tourPlayer.hidden = true;
+      tourStart.hidden = false;
+      tourStart.setAttribute('aria-expanded', 'false');
+      tourStart.focus();
+    });
+  }
+
   // Галерея и кадастровые схемы: полный кадр без обрезки.
   // Никакие данные пользователя здесь не сохраняются и не отправляются.
   const viewer = document.getElementById('image-viewer');

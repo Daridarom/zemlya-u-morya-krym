@@ -17,7 +17,7 @@
 <div class="proto-bar" role="note">Прототип новой страницы. Реклама сюда пока не ведёт, заявки с формы не отправляются.</div>
 <nav class="site-nav" aria-label="Основная навигация">
   <a class="brand" href="#" aria-label="Земля у моря — в начало"><span class="brand-wave" aria-hidden="true">≈</span><span>Земля у моря<small>Щёлкино · Крым</small></span></a>
-  <div class="nav-links"><a href="#ceny">Цены</a><a href="#gde">Расположение</a><a href="#foto">Фото</a><a href="#krupnye">Участки</a></div>
+  <div class="nav-links"><a href="#ceny">Цены</a><a href="#gde">Расположение</a><a href="#foto">Фото</a><a href="#tur">3D-тур</a><a href="#krupnye">Участки</a></div>
   <a class="nav-phone" href="tel:+79782964108">+7 978 296-41-08</a>
 </nav>
 
@@ -118,6 +118,30 @@
         <p>По соседству с участками, у самого моря, группа компаний «Точка притяжения» развивает свой участок около 2,4 га под туристический комплекс.</p>
         <p class="cad">90:07:200601:2273</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="tour-section" id="tur" aria-labelledby="tour-h">
+  <div class="wrap tour-layout">
+    <div class="tour-copy">
+      <p class="eyebrow">Панорама 360° · проект «Азгард»</p>
+      <h2 id="tour-h">Осмотрите побережье до поездки</h2>
+      <p class="tour-lead">Настоящий панорамный обзор территории проекта «Азгард» в районе Бухты Космонавтов. Поворачивайте изображение, приближайте детали и переходите между точками съёмки.</p>
+      <p class="tour-clarification"><strong>Важно:</strong> тур знакомит с местностью и проектом в этом районе. Он не показывает точные границы или состояние каждого продаваемого участка. Для выбранной земли организуем отдельный видеопоказ.</p>
+      <a class="tour-personal-link" href="tel:+79782964108">Запросить видеопоказ участка <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="tour-view">
+      <button class="tour-start" id="tour-start" type="button" aria-controls="tour-player" aria-expanded="false">
+        <img src="assets/img/tour-poster.webp" width="1100" height="700" alt="Кадр реального 3D-тура «Азгард»: степной рельеф и побережье Бухты Космонавтов" loading="lazy" decoding="async">
+        <span class="tour-start-circle" aria-hidden="true">360°</span>
+        <span class="tour-start-label">Запустить панорамный обзор <span aria-hidden="true">↗</span></span>
+      </button>
+      <div class="tour-player" id="tour-player" hidden>
+        <div class="tour-player-top"><span>3D-тур «Азгард»</span><button id="tour-close" type="button">Закрыть обзор ×</button></div>
+        <div class="tour-frame" id="tour-frame"></div>
+      </div>
+      <div class="tour-view-foot"><span>Интерактивный обзор загрузится с azgard-crimea.ru только после нажатия</span><a href="https://azgard-crimea.ru/" target="_blank" rel="noopener noreferrer">Открыть отдельно ↗</a></div>
     </div>
   </div>
 </section>
