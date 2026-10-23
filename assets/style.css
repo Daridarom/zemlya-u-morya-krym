@@ -405,3 +405,30 @@ h3 { letter-spacing:-.025em; }
 @media(max-width:520px) {
   .req-form .channel { grid-template-columns:1fr; }
 }
+
+/* Самостоятельные направления продаж: у моря / СНТ Керчь / Скиф. */
+.eyebrow-light { color:#a8e2db; }
+.nearby-note { font-size:13px; opacity:.85; }
+.separate-intro { background:#fff; padding-bottom:26px; }
+.separate-intro .wrap { border-top:1px solid #dde6e3; padding-top:62px; }
+.separate-intro h2 { margin-bottom:12px; }
+.separate-intro p:last-child { max-width:68ch; color:var(--muted); }
+.snt-section { background:#ecf4eb; padding-block:clamp(52px,6vw,84px); }
+.snt-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.8fr); gap:clamp(28px,5vw,68px); align-items:center; }
+.snt-section h2 { max-width:15ch; }
+.snt-content > p:not(.eyebrow):not(.snt-price) { color:#375860; font-size:16px; line-height:1.72; }
+.snt-price { font:700 clamp(24px,3vw,34px)/1.2 "Unbounded",sans-serif; color:var(--ink); letter-spacing:-.045em; margin:14px 0 22px; }
+.snt-names { background:#fff; border-left:3px solid #5fa39b; padding:13px 16px; border-radius:0 10px 10px 0; }
+.snt-visual { min-width:0; border-radius:20px; padding:clamp(20px,3.4vw,36px); background:#fff; box-shadow:0 16px 40px rgba(16,57,67,.08); }
+.snt-location-title { font-family:"Unbounded",sans-serif; font-weight:600; font-size:16px; line-height:1.5; margin-bottom:22px; color:#184a48; }
+.snt-place-list { display:grid; gap:0; }
+.snt-place-list > div { display:grid; grid-template-columns:16px 1fr; column-gap:13px; align-items:baseline; padding:16px 0; border-top:1px solid #dce7e4; }
+.snt-place-list small { grid-column:2; color:#597079; font-size:13px; }
+.snt-place-list strong { font-size:16px; color:#183a3d; }
+.snt-dot { height:12px; width:12px; border-radius:50%; background:#5cafa2; border:3px solid #def1ed; }
+.snt-visual-note { font-size:13px; line-height:1.6; color:#536b71; margin:24px 0 0; }
+.skif-section { background:#fff; }
+.skif-grid { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1fr); align-items:center; gap:clamp(25px,5vw,65px); }
+.skif-picture { background:#e7f0ed; border-radius:20px; padding:15px; box-shadow:0 12px 34px rgba(13,55,65,.08); }
+.skif-picture img { object-fit:contain; max-height:380px; width:100%; }
+@media(max-width:860px) { .snt-grid,.skif-grid { grid-template-columns:1fr; } .skif-grid > div { grid-row:1; } .snt-section h2 { max-width:100%; } .skif-picture { max-width:520px; } }

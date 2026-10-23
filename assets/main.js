@@ -52,6 +52,14 @@ const FORM_ENDPOINT = '';
       });
   });
 
+  // Подбор конкретного направления без отправки данных в прототипе.
+  document.querySelectorAll('a[data-product]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      const choice = form.querySelector('input[name="product"][value="' + link.dataset.product + '"]');
+      if (choice) choice.checked = true;
+    });
+  });
+
   // Виртуальный тур «Азгард»: сторонний Pano2VR загружается только после нажатия.
   // Тур показывает окрестности и соседний проект, а не конкретные продаваемые участки.
   const tourStart = document.getElementById('tour-start');
