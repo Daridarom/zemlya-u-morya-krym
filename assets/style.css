@@ -112,6 +112,12 @@ section { padding: 72px 0; }
 .parcel figcaption { display: flex; justify-content: space-between; gap: 8px; padding: 14px 16px; font-size: 15px; }
 .cad { font-weight: 600; font-variant-numeric: tabular-nums; }
 @media (max-width: 640px) { .parcels { grid-template-columns: 1fr; } }
+.nearby { margin-top: 40px; display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: center; max-width: 760px; padding-top: 32px; border-top: 1px solid rgba(211,235,230,.3); }
+.nearby img { width: 220px; height: 220px; object-fit: cover; border-radius: var(--radius-l); }
+.nearby h3 { color: var(--white); font-size: 20px; }
+.nearby p { color: var(--azov-pale); }
+.nearby .cad { color: var(--plot); }
+@media (max-width: 520px) { .nearby { grid-template-columns: 1fr; } .nearby img { width: 100%; height: 200px; } }
 
 /* Другие варианты */
 .other-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
