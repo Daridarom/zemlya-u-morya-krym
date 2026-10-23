@@ -15,17 +15,23 @@
 <body>
 
 <div class="proto-bar" role="note">Прототип новой страницы. Реклама сюда пока не ведёт, заявки с формы не отправляются.</div>
+<nav class="site-nav" aria-label="Основная навигация">
+  <a class="brand" href="#" aria-label="Земля у моря — в начало"><span class="brand-wave" aria-hidden="true">≈</span><span>Земля у моря<small>Щёлкино · Крым</small></span></a>
+  <div class="nav-links"><a href="#ceny">Цены</a><a href="#gde">Расположение</a><a href="#foto">Фото</a><a href="#krupnye">Участки</a></div>
+  <a class="nav-phone" href="tel:+79782964108">+7 978 296-41-08</a>
+</nav>
 
 <header class="hero">
-  <img class="hero-photo" src="https://avatars.mds.yandex.net/get-maps-adv-crm/4034578/2a000001a11166efd38db3374c9b36c876a9/orig" alt="Бухта на Азовском море в районе Щёлкино" fetchpriority="high">
+  <img class="hero-photo" src="assets/img/hero.webp" width="2000" height="1125" alt="Бухта на Азовском море в районе Щёлкино" fetchpriority="high" decoding="async">
   <div class="hero-inner">
     <p class="hero-place">Щёлкино · Восточный Крым · Азовское море</p>
     <h1>Участки у&nbsp;Азовского моря в&nbsp;Щёлкино</h1>
     <p class="hero-lead">От 4 соток, в пешей доступности от центра города. Цена зависит от того, какая линия от моря: от 1,2 до 2 млн ₽. Покажу участок по видео и проведу сделку.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#zayavka">Подобрать участок</a>
+      <a class="btn btn-primary" href="#zayavka">Подобрать участок <span aria-hidden="true">↗</span></a>
       <a class="btn btn-ghost" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
     </div>
+    <div class="hero-facts" aria-label="Главное об участках"><span><strong>от 4 соток</strong><small>площадь участка</small></span><span><strong>от 1,2 млн ₽</strong><small>цена за участок</small></span><span><strong>3 линии</strong><small>разная близость к морю</small></span></div>
   </div>
 </header>
 
@@ -79,10 +85,15 @@
   </div>
 </section>
 
-<section class="photo-strip" aria-label="Побережье рядом с участками">
-  <figure><img src="https://avatars.mds.yandex.net/get-maps-adv-crm/3736055/2a000001a125c5130b140edcef49835a1ec4/orig" alt="Грот на побережье у Щёлкино на закате" loading="lazy"></figure>
-  <figure><img src="https://avatars.mds.yandex.net/get-maps-adv-crm/11387709/2a000001a126a21ec77f4d66646f94e0ed73/orig" alt="Пляж с кайтерами на Азовском море, вид сверху" loading="lazy"></figure>
-  <figure><img src="https://avatars.mds.yandex.net/get-maps-adv-crm/4771617/2a000001a126a46300c312b5adeb3d7acaad/orig" alt="Берег Азовского моря под грозовым небом" loading="lazy"></figure>
+<section class="coast-gallery" id="foto" aria-labelledby="foto-h">
+  <div class="wrap">
+    <div class="gallery-heading"><div><p class="eyebrow">Побережье</p><h2 id="foto-h">Посмотрите место</h2></div><p class="gallery-hint">Нажмите на фотографию, чтобы рассмотреть её целиком</p></div>
+    <div class="coast-grid">
+      <figure class="coast-tile"><button class="photo-open" type="button" aria-label="Открыть фото грота на закате"><img src="assets/img/coast-grotto.webp" width="1000" height="1000" alt="Грот на побережье у Щёлкино на закате" loading="lazy" decoding="async"></button><figcaption>Грот и вечерний свет</figcaption></figure>
+      <figure class="coast-tile"><button class="photo-open" type="button" aria-label="Открыть фото кайтсерфинга"><img src="assets/img/coast-kite.webp" width="1200" height="1200" alt="Пляж с кайтерами на Азовском море, вид сверху" loading="lazy" decoding="async"></button><figcaption>Ветер и Азовское море</figcaption></figure>
+      <figure class="coast-tile"><button class="photo-open" type="button" aria-label="Открыть фото побережья"><img src="assets/img/coast-storm.webp" width="1200" height="1200" alt="Берег Азовского моря под грозовым небом" loading="lazy" decoding="async"></button><figcaption>Побережье Азовского моря</figcaption></figure>
+    </div>
+  </div>
 </section>
 
 <section class="large" id="krupnye" aria-labelledby="large-h">
@@ -91,17 +102,17 @@
     <p class="section-lead">Для большого дома или своего проекта. Панорамный вид на море. Цена от 4,5 до 5 млн ₽. Разрешённое использование и ограничения проверим по конкретному участку до сделки.</p>
     <div class="parcels">
       <figure class="parcel">
-        <img src="assets/img/map-1587.jpg" alt="Участок 90:07:200601:1587 на кадастровой карте" loading="lazy">
+        <button class="photo-open map-open" type="button" aria-label="Открыть кадастровую схему участка 1587"><img src="assets/img/map-1587.jpg" width="410" height="515" alt="Участок 90:07:200601:1587 на кадастровой карте" loading="lazy"></button>
         <figcaption><span class="cad">90:07:200601:1587</span><span>около 49 соток</span></figcaption>
       </figure>
       <figure class="parcel">
-        <img src="assets/img/map-1621.jpg" alt="Участок 90:07:200601:1621 на кадастровой карте" loading="lazy">
+        <button class="photo-open map-open" type="button" aria-label="Открыть кадастровую схему участка 1621"><img src="assets/img/map-1621.jpg" width="405" height="515" alt="Участок 90:07:200601:1621 на кадастровой карте" loading="lazy"></button>
         <figcaption><span class="cad">90:07:200601:1621</span><span>около 33 соток</span></figcaption>
       </figure>
     </div>
 
     <div class="nearby">
-      <img src="assets/img/map-2273.jpg" alt="Участок 90:07:200601:2273 у моря на кадастровой карте" loading="lazy">
+      <button class="photo-open map-open nearby-map" type="button" aria-label="Открыть кадастровую схему участка 2273"><img src="assets/img/map-2273.jpg" width="405" height="515" alt="Участок 90:07:200601:2273 у моря на кадастровой карте" loading="lazy"></button>
       <div>
         <h3>Что развивается рядом</h3>
         <p>По соседству с участками, у самого моря, группа компаний «Точка притяжения» развивает свой участок около 2,4 га под туристический комплекс.</p>
@@ -116,7 +127,7 @@
     <h2 id="other-h">Если нужно дешевле</h2>
     <div class="other-grid">
       <article class="other-item">
-        <img src="https://avatars.mds.yandex.net/get-maps-adv-crm/4771617/2a000001a125d792211424493245306a0089/orig" alt="Схема клубного посёлка «Скиф»" loading="lazy">
+        <button class="photo-open skif-open" type="button" aria-label="Открыть схему посёлка Скиф"><img src="assets/img/skif-masterplan.webp" width="1200" height="1200" alt="Схема клубного посёлка «Скиф»" loading="lazy"></button>
         <div>
           <h3>Посёлок «Скиф»</h3>
           <p class="price">от 500 000 ₽</p>
@@ -137,7 +148,7 @@
 
 <section class="guide" id="aleksey" aria-labelledby="guide-h">
   <div class="wrap guide-grid">
-    <img class="guide-photo" src="https://avatars.mds.yandex.net/get-maps-adv-crm/13303822/2a000001a1269cf26193aca6c9a349497ea4/orig" alt="Алексей, представитель компании «Точка притяжения»" loading="lazy">
+    <img class="guide-photo" src="assets/img/portrait-aleksey.webp" width="1200" height="1200" alt="Алексей, представитель компании «Точка притяжения»" loading="lazy">
     <div>
       <h2 id="guide-h">Покупаете издалека? Я здесь живу</h2>
       <p>Меня зовут Алексей. Большинство наших покупателей не из Крыма, поэтому я показываю участки по видео: дорогу, соседей, вид на море, что видно с участка.</p>
@@ -209,6 +220,10 @@
 
 <a class="sticky-cta" href="#zayavka">Подобрать участок</a>
 
+<dialog id="image-viewer" class="image-viewer" aria-label="Просмотр фотографии">
+  <div class="viewer-bar"><span id="viewer-caption"></span><button class="viewer-close" type="button" aria-label="Закрыть фотографию">Закрыть ×</button></div>
+  <img id="viewer-img" src="" alt="">
+</dialog>
 <script src="assets/main.js"></script>
 </body>
 </html>
