@@ -27,7 +27,7 @@ body {
 img { max-width: 100%; display: block; }
 a { color: var(--ink); }
 h1, h2, h3 { font-family: "Unbounded", "Golos Text", sans-serif; font-weight: 700; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.01em; }
-h2 { font-size: clamp(26px, 4vw, 40px); color: var(--ink); }
+h2 { font-size: clamp(23px, 3.2vw, 36px); color: var(--ink); }
 h3 { font-size: 18px; font-weight: 500; }
 p { margin: 0 0 1em; }
 :focus-visible { outline: 3px solid var(--plot); outline-offset: 3px; }
@@ -51,11 +51,11 @@ section { padding: 72px 0; }
 /* Первый экран */
 .hero { position: relative; min-height: 88vh; display: flex; align-items: flex-end; color: var(--white); overflow: hidden; }
 .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,59,67,0) 30%, rgba(14,59,67,.88) 100%); }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,59,67,.35) 0%, rgba(14,59,67,.55) 45%, rgba(14,59,67,.92) 100%); }
 .hero-inner { position: relative; z-index: 1; max-width: var(--wrap); width: 100%; margin: 0 auto; padding: 0 16px 56px; }
 .hero-place { font-size: 15px; opacity: .9; margin-bottom: 12px; }
-.hero h1 { font-size: clamp(34px, 6.2vw, 72px); max-width: 14ch; margin-bottom: 20px; }
-.hero-lead { font-size: clamp(17px, 2vw, 20px); max-width: 52ch; margin-bottom: 28px; }
+.hero h1 { font-size: clamp(28px, 4.6vw, 58px); max-width: 17ch; margin-bottom: 20px; overflow-wrap: break-word; text-shadow: 0 2px 18px rgba(14,59,67,.45); }
+.hero-lead { font-size: clamp(17px, 2vw, 20px); max-width: 52ch; margin-bottom: 28px; text-shadow: 0 1px 10px rgba(14,59,67,.5); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* Цены по линиям — главный элемент */
@@ -68,7 +68,7 @@ section { padding: 72px 0; }
 .line-2 { background: #e9eee2; }
 .line-3 { background: #ece3c4; }
 .line-name { font-weight: 600; color: var(--muted); }
-.line-price { font: 700 clamp(26px, 3.2vw, 38px)/1.05 "Unbounded", sans-serif; color: var(--ink); white-space: nowrap; }
+.line-price { font: 700 clamp(22px, 2.6vw, 32px)/1.05 "Unbounded", sans-serif; color: var(--ink); white-space: nowrap; }
 .line-note { font-size: 15px; color: var(--muted); }
 .market { font-size: 16px; color: var(--muted); max-width: 62ch; border-left: 4px solid var(--plot); padding-left: 14px; }
 
