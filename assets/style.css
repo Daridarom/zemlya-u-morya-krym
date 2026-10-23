@@ -362,6 +362,9 @@ h3 { letter-spacing:-.025em; }
   .map-frame { aspect-ratio: auto; height: 340px; min-height: 0; }
 }
 @media (max-width: 760px) {
-  .hero::after { background: linear-gradient(180deg, rgba(3,30,36,.05) 0%, rgba(3,30,36,.12) 28%, rgba(4,30,35,.72) 58%, rgba(4,30,35,.95) 100%); }
-  .hero-inner { padding-top: 300px; }
+  /* На узком экране фото сверху отдельным кадром, чтобы море не пряталось под текстом */
+  .hero { display: block; min-height: 0; background: #0a3a40; }
+  .hero-photo { position: relative; inset: auto; height: 46svh; min-height: 280px; object-position: 50% 82%; }
+  .hero::after { display: none; }
+  .hero-inner { padding-top: 22px; padding-bottom: 32px; }
 }
