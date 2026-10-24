@@ -440,3 +440,9 @@ h3 { letter-spacing:-.025em; }
 .ya-form-wrap { padding: 8px; overflow: hidden; }
 .ya-form-wrap iframe { display: block; width: 100%; min-height: 640px; border: 0; }
 .ya-form-fallback { margin: 8px 12px 4px; font-size: 14px; color: var(--muted); }
+
+/* 24.10: телефон не разрывается, схемы не растягиваются сверх размера, ссылка на политику */
+a[href^="tel:"] { white-space: nowrap; }
+.image-viewer img.is-map { max-width: min(90vw, 560px); }
+.ya-form-policy { margin: 12px 12px 0; font-size: 14px; color: var(--muted); }
+.ya-form-policy a { color: var(--ink); }

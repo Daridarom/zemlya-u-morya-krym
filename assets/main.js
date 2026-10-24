@@ -22,6 +22,7 @@
         const img = button.querySelector('img');
         if (!img) return;
         viewerImg.src = img.currentSrc || img.src;
+        viewerImg.classList.toggle('is-map', button.classList.contains('map-open'));
         viewerImg.alt = img.alt;
         viewerCaption.textContent = img.alt;
         viewer.showModal();
