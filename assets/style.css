@@ -432,3 +432,6 @@ h3 { letter-spacing:-.025em; }
 .skif-picture { background:#e7f0ed; border-radius:20px; padding:15px; box-shadow:0 12px 34px rgba(13,55,65,.08); }
 .skif-picture img { object-fit:contain; max-height:380px; width:100%; }
 @media(max-width:860px) { .snt-grid,.skif-grid { grid-template-columns:1fr; } .skif-grid > div { grid-row:1; } .snt-section h2 { max-width:100%; } .skif-picture { max-width:520px; } }
+
+/* 24.10: четыре способа связи в форме */
+.channel { grid-template-columns: repeat(2, 1fr); }
