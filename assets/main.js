@@ -1,94 +1,13 @@
-// Прототип: форма проверяет поля, но заявку никуда не отправляет.
-// На рабочем домене сюда подключается обработчик на российском хостинге (152-ФЗ):
-// задайте адрес в FORM_ENDPOINT, и форма начнёт отправлять заявки.
-const FORM_ENDPOINT = '';
-
 (function () {
-  const form = document.getElementById('req-form');
-  const msg = document.getElementById('form-msg');
-
-  // Метки рекламы сохраняем, чтобы заявка знала, с какого объявления пришёл человек
+  // Метки рекламы передаём в скрытые поля Яндекс Формы, чтобы в заявке было видно, с какого объявления пришёл человек
   const params = new URLSearchParams(location.search);
-  const utm = {};
-  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid'].forEach(function (k) {
-    if (params.get(k)) utm[k] = params.get(k);
-  });
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    msg.classList.remove('err');
-    const phone = form.phone.value.replace(/\D/g, '');
-    if (phone.length < 10) {
-      msg.textContent = 'Проверьте номер: нужно 10–11 цифр.';
-      msg.classList.add('err');
-      form.phone.focus();
-      return;
-    }
-    if (!form.consent.checked) {
-      msg.textContent = 'Отметьте согласие на обработку данных, иначе я не смогу ответить.';
-      msg.classList.add('err');
-      return;
-    }
-    const data = {
-      phone: form.phone.value,
-      product: form.product.value,
-      channel: form.channel.value,
-      page: location.href,
-      utm: utm
-    };
-    if (!FORM_ENDPOINT) {
-      msg.textContent = 'Это прототип: заявка не отправлена. Позвоните +7 978 296-41-08 или напишите в MAX.';
-      return;
-    }
-    fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-      .then(function (r) {
-        if (!r.ok) throw new Error();
-        msg.textContent = 'Заявка отправлена. Свяжусь с вами в ближайшее время.';
-        form.reset();
-      })
-      .catch(function () {
-        msg.textContent = 'Заявка не ушла. Позвоните +7 978 296-41-08 или напишите в MAX.';
-        msg.classList.add('err');
-      });
-  });
-
-  // Подбор конкретного направления без отправки данных в прототипе.
-  document.querySelectorAll('a[data-product]').forEach(function (link) {
-    link.addEventListener('click', function () {
-      const choice = form.querySelector('input[name="product"][value="' + link.dataset.product + '"]');
-      if (choice) choice.checked = true;
+  const frame = document.getElementById('ya-form');
+  if (frame) {
+    const src = new URL(frame.getAttribute('src'));
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid'].forEach(function (k) {
+      if (params.get(k)) src.searchParams.set(k, params.get(k));
     });
-  });
-
-  // Виртуальный тур «Азгард»: сторонний Pano2VR загружается только после нажатия.
-  // Тур показывает окрестности и соседний проект, а не конкретные продаваемые участки.
-  const tourStart = document.getElementById('tour-start');
-  const tourPlayer = document.getElementById('tour-player');
-  const tourFrame = document.getElementById('tour-frame');
-  const tourClose = document.getElementById('tour-close');
-  if (tourStart && tourPlayer && tourFrame && tourClose) {
-    tourStart.addEventListener('click', function () {
-      if (tourFrame.querySelector('iframe')) return;
-      const iframe = document.createElement('iframe');
-      iframe.title = 'Панорамный 3D-тур территории проекта «Азгард»';
-      iframe.src = 'https://azgard-crimea.ru/';
-      iframe.allow = 'fullscreen; accelerometer; gyroscope';
-      iframe.allowFullscreen = true;
-      iframe.referrerPolicy = 'no-referrer';
-      iframe.loading = 'eager';
-      tourFrame.appendChild(iframe);
-      tourPlayer.hidden = false;
-      tourStart.hidden = true;
-      tourStart.setAttribute('aria-expanded', 'true');
-      tourClose.focus();
-    });
-    tourClose.addEventListener('click', function () {
-      tourFrame.replaceChildren();
-      tourPlayer.hidden = true;
-      tourStart.hidden = false;
-      tourStart.setAttribute('aria-expanded', 'false');
-      tourStart.focus();
-    });
+    if (src.toString() !== frame.getAttribute('src')) frame.setAttribute('src', src.toString());
   }
 
   // Галерея и кадастровые схемы: полный кадр без обрезки.

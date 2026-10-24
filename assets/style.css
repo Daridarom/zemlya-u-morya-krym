@@ -435,3 +435,8 @@ h3 { letter-spacing:-.025em; }
 
 /* 24.10: четыре способа связи в форме */
 .channel { grid-template-columns: repeat(2, 1fr); }
+
+/* 24.10: встроенная Яндекс Форма */
+.ya-form-wrap { padding: 8px; overflow: hidden; }
+.ya-form-wrap iframe { display: block; width: 100%; min-height: 640px; border: 0; }
+.ya-form-fallback { margin: 8px 12px 4px; font-size: 14px; color: var(--muted); }
