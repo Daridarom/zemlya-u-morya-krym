@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internal viewport checks</title>
+<style>body{font:14px/1.45 system-ui;background:#f1f4f2;margin:14px;color:#20312d}h1{font-size:19px}#testframe{display:block;height:760px;border:2px solid #66867d;background:white}#report{white-space:pre-wrap;background:white;border:1px solid #ccc;padding:12px;margin:10px 0;font:13px/1.4 monospace}b{color:#25574b}</style></head>
+<body><h1>QA страницы: <b id="device"></b></h1><pre id="report">Проверка...</pre><iframe id="testframe" title="Тестируемый лендинг"></iframe>
+<script>
+(async function(){
+  const query=new URLSearchParams(location.search);
+  const width=query.get('width')==='1440'?1440:390;
+  const archive=query.get('archive')==='1';
+  const frame=document.getElementById('testframe');
+  frame.style.width=width+'px';
+  document.getElementById('device').textContent=width+' px'+(archive?' / архив':' / Claude v2');
+  const source=archive?'index-editorial-20261025.html':'../index.html?utm_source=qa_width&utm_medium=qa&utm_campaign=viewport_test&utm_content=layout&yclid=qa_test_123';
+  frame.src=source;
+  const timeout=setTimeout(()=>{document.getElementById('report').textContent='TIMEOUT: iframe не завершил загрузку за 20 секунд'},20000);
+  frame.onload=async function(){
+    try{
+      const doc=frame.contentDocument;
+      const win=frame.contentWindow;
+      const imgs=[...doc.images];
+      const checks={};
+      const allLinks=[...doc.querySelectorAll('a[href]')];
+      const href=(pattern)=>allLinks.filter(el=>el.href.includes(pattern)).map(el=>el.href);
+      checks['ширина iframe']=frame.clientWidth+' px, окно '+win.innerWidth+' px';
+      checks['горизонтальная прокрутка']=doc.documentElement.scrollWidth>doc.documentElement.clientWidth?'ЕСТЬ, scroll='+doc.documentElement.scrollWidth+' client='+doc.documentElement.clientWidth:'нет';
+      checks['изображения всего']=imgs.length;
+      const tested=await Promise.all(imgs.map(img=>new Promise(resolve=>{
+        const probe=new Image();probe.onload=()=>resolve({src:img.getAttribute('src'),ok:true,w:probe.naturalWidth,h:probe.naturalHeight});
+        probe.onerror=()=>resolve({src:img.getAttribute('src'),ok:false});
+        probe.src=img.src;
+      })));
+      checks['изображения']=tested.map(x=>(x.ok?'OK ':'ERROR ')+x.src+(x.ok?' '+x.w+'x'+x.h:'' )).join('; ');
+      checks['MAX ссылок']=href('max.ru/u/').length;
+      checks['телефонных ссылок']=allLinks.filter(x=>x.href.startsWith('tel:+79782964108')).length;
+      checks['Яндекс Форма']=href('forms.yandex.ru/u/').length;
+      checks['карта']=href('yandex.ru/maps/').length;
+      checks['3D-тур']=href('azgard-crimea.ru').length;
+      checks['политика']=href('politika.html').join(' ');
+      checks['noindex']=doc.querySelector('meta[name="robots"]')?.content||'нет';
+      checks['UTM в форме']=archive?'архивная версия':(href('forms.yandex.ru/u/')[0]?.includes('utm_source=qa_width')&&href('forms.yandex.ru/u/')[0]?.includes('yclid=qa_test_123')?'OK':'НЕТ');
+      const fail=checks['горизонтальная прокрутка'].startsWith('ЕСТЬ')||tested.some(x=>!x.ok)||(!archive&&checks['UTM в форме']!=='OK');
+      document.getElementById('report').textContent=(fail?'РЕЗУЛЬТАТ: НУЖНА ПРАВКА':'РЕЗУЛЬТАТ: ОСНОВНЫЕ ПРОВЕРКИ ПРОШЛИ')+'\n'+Object.entries(checks).map(([k,v])=>k+': '+v).join('\n');
+      clearTimeout(timeout);
+    }catch(e){clearTimeout(timeout);document.getElementById('report').textContent='ERROR: '+e.stack}
+  };
+})();
+</script>
+</body></html>
