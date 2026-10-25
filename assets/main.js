@@ -1,52 +1,93 @@
-(function () {
-  // Метки рекламы передаём в скрытые поля Яндекс Формы, чтобы в заявке было видно, с какого объявления пришёл человек
-  const params = new URLSearchParams(location.search);
-  const frame = document.getElementById('ya-form');
-  if (frame) {
-    const src = new URL(frame.getAttribute('src'));
-    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid'].forEach(function (k) {
-      if (params.get(k)) src.searchParams.set(k, params.get(k));
-    });
-    if (src.toString() !== frame.getAttribute('src')) frame.setAttribute('src', src.toString());
+/* Земля у моря — лёгкое поведение без сторонних JS-зависимостей */
+(function(){
+"use strict";
+const formUrl="https://forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f/";
+const formLink=document.getElementById("form-link");
+const chosen=document.getElementById("chosen-interest");
+const params=new URLSearchParams(location.search);
+const allowedParams=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","yclid"];
+if(formLink){
+  const url=new URL(formUrl);
+  for(const key of allowedParams){
+    const val=params.get(key);
+    if(val)url.searchParams.set(key,val.slice(0,250));
   }
-
-  // Галерея и кадастровые схемы: полный кадр без обрезки.
-  // Никакие данные пользователя здесь не сохраняются и не отправляются.
-  const viewer = document.getElementById('image-viewer');
-  const viewerImg = document.getElementById('viewer-img');
-  const viewerCaption = document.getElementById('viewer-caption');
-  const viewerClose = viewer && viewer.querySelector('.viewer-close');
-  if (viewer && viewerImg && viewerClose && typeof viewer.showModal === 'function') {
-    document.querySelectorAll('.photo-open').forEach(function (button) {
-      button.addEventListener('click', function () {
-        const img = button.querySelector('img');
-        if (!img) return;
-        viewerImg.src = img.currentSrc || img.src;
-        viewerImg.classList.toggle('is-map', button.classList.contains('map-open'));
-        viewerImg.alt = img.alt;
-        viewerCaption.textContent = img.alt;
-        viewer.showModal();
-      });
-    });
-    viewerClose.addEventListener('click', function () { viewer.close(); });
-    viewer.addEventListener('click', function (event) {
-      if (event.target === viewer) viewer.close();
-    });
-    viewer.addEventListener('close', function () {
-      viewerImg.removeAttribute('src');
-      viewerImg.alt = '';
-    });
-  }
-
-  // Нижняя кнопка на телефоне прячется на первом экране и когда форма уже видна
-  const sticky = document.querySelector('.sticky-cta');
-  const watched = [document.querySelector('.hero'), document.getElementById('zayavka')];
-  if ('IntersectionObserver' in window && sticky) {
-    const visible = new Set();
-    const io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { en.isIntersecting ? visible.add(en.target) : visible.delete(en.target); });
-      sticky.classList.toggle('hide', visible.size > 0);
-    });
-    watched.forEach(function (el) { if (el) io.observe(el); });
-  }
+  formLink.href=url.toString();
+}
+// Карточки ведут к одной заявке. Выбранное предложение показано как подсказка,
+// но не выдаётся за автозаполненное поле чужой формы.
+document.querySelectorAll("[data-interest]").forEach(function(link){
+ link.addEventListener("click",function(){
+   const interest=link.getAttribute("data-interest");
+   if(chosen&&interest)chosen.textContent="Ваш интерес: "+interest+". Отметьте его в открывшейся анкете.";
+ });
+});
+const menu=document.querySelector(".menu-toggle");
+const mobileNav=document.getElementById("mobile-nav");
+if(menu&&mobileNav){
+ const close=function(){menu.setAttribute("aria-expanded","false");menu.setAttribute("aria-label","Открыть меню");mobileNav.hidden=true;};
+ menu.addEventListener("click",function(){
+   const opening=menu.getAttribute("aria-expanded")!=="true";
+   menu.setAttribute("aria-expanded",String(opening));
+   menu.setAttribute("aria-label",opening?"Закрыть меню":"Открыть меню");
+   mobileNav.hidden=!opening;
+ });
+ mobileNav.querySelectorAll("a").forEach(function(a){a.addEventListener("click",close);});
+ document.addEventListener("keydown",function(e){if(e.key==="Escape")close();});
+}
+// Снимки и иллюстративные кадастровые контуры открываются в полном размере.
+const viewer=document.getElementById("image-viewer");
+const viewerImage=document.getElementById("viewer-img");
+const viewerCaption=document.getElementById("viewer-caption");
+const viewerClose=viewer&&viewer.querySelector(".viewer-close");
+if(viewer&&viewerImage&&viewerClose&&typeof viewer.showModal==="function"){
+ document.querySelectorAll(".photo-open").forEach(function(button){
+   button.addEventListener("click",function(){
+     const img=button.querySelector("img");
+     if(!img)return;
+     viewerImage.src=img.currentSrc||img.src;
+     viewerImage.alt=img.alt;
+     viewerCaption.textContent=img.alt;
+     viewer.showModal();
+   });
+ });
+ viewerClose.addEventListener("click",function(){viewer.close();});
+ viewer.addEventListener("click",function(e){if(e.target===viewer)viewer.close();});
+ viewer.addEventListener("close",function(){viewerImage.removeAttribute("src");viewerImage.alt="";});
+}
+// Панорама проекта «Азгард» загружается только после осознанного клика.
+const start=document.getElementById("tour-start");
+const panel=document.getElementById("tour-player");
+const frameContainer=document.getElementById("tour-frame");
+const closeTour=document.getElementById("tour-close");
+if(start&&panel&&frameContainer&&closeTour){
+ start.addEventListener("click",function(){
+   if(frameContainer.querySelector("iframe"))return;
+   const iframe=document.createElement("iframe");
+   iframe.src="https://azgard-crimea.ru/";
+   iframe.title="360-градусный обзор территории проекта «Азгард»";
+   iframe.setAttribute("allow","fullscreen; accelerometer; gyroscope");
+   iframe.setAttribute("allowfullscreen","");
+   iframe.setAttribute("referrerpolicy","no-referrer");
+   frameContainer.appendChild(iframe);
+   start.hidden=true;panel.hidden=false;start.setAttribute("aria-expanded","true");
+   closeTour.focus();
+ });
+ closeTour.addEventListener("click",function(){
+   frameContainer.replaceChildren();
+   panel.hidden=true;start.hidden=false;start.setAttribute("aria-expanded","false");
+   start.focus();
+ });
+}
+// Мобильная кнопка видна в середине страницы, но не заслоняет шапку и контакты.
+const sticky=document.querySelector(".sticky-cta");
+const watched=[document.querySelector(".hero"),document.getElementById("zayavka")].filter(Boolean);
+if(sticky&&typeof IntersectionObserver==="function"){
+ const visible=new Set();
+ const observer=new IntersectionObserver(function(entries){
+   entries.forEach(function(entry){if(entry.isIntersecting)visible.add(entry.target);else visible.delete(entry.target);});
+   sticky.classList.toggle("hide",visible.size>0);
+ },{threshold:0.08});
+ watched.forEach(function(el){observer.observe(el);});
+}
 })();
