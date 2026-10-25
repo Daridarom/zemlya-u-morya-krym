@@ -18,7 +18,7 @@
     try{
       const doc=frame.contentDocument;
       const win=frame.contentWindow;
-      const imgs=[...doc.images];
+      const imgs=[...doc.images].filter(img=>!!img.getAttribute('src'));
       const checks={};
       const allLinks=[...doc.querySelectorAll('a[href]')];
       const href=(pattern)=>allLinks.filter(el=>el.href.includes(pattern)).map(el=>el.href);
