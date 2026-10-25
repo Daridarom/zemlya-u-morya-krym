@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+<title id="title">Схема участка 90:07:200601:1587</title>
+<desc id="desc">Контур приближённо повторяет форму выделенного участка с присланного снимка кадастровой карты. Изображение иллюстративное, не кадастровый план и не подтверждение точных координат границ.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6cac7" stroke-width="1" opacity="0.26"/></pattern><filter id="shadow" x="-20%" y="-30%" width="140%" height="165%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#0b424a" flood-opacity="0.22"/></filter></defs>
+<rect width="960" height="640" rx="24" fill="#e8f0ed"/><rect width="960" height="640" fill="url(#grid)"/>
+<rect x="32" y="28" width="390" height="42" rx="21" fill="#174b53"/><text x="52" y="56" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#fff">СХЕМА КОНТУРА УЧАСТКА</text>
+<polygon points="538.0,147.5 434.2,209.2 409.0,209.2 324.8,287.7 429.5,455.0 510.8,462.5 635.2,426.0" fill="#d3df54" stroke="#fafafa" stroke-width="12" stroke-linejoin="round" filter="url(#shadow)"/><polygon points="538.0,147.5 434.2,209.2 409.0,209.2 324.8,287.7 429.5,455.0 510.8,462.5 635.2,426.0" fill="#c9d849" stroke="#29514e" stroke-width="5" stroke-linejoin="round"/>
+<circle cx="480" cy="300" r="17" fill="#185c68" stroke="#fff" stroke-width="5"/>
+<rect x="0" y="502" width="960" height="138" fill="#103943"/>
+<text x="40" y="544" font-family="Arial,sans-serif" font-size="20" fill="#c8e9e0">Земельный участок · около 49 соток</text>
+<text x="40" y="592" font-family="Arial,sans-serif" font-weight="700" font-size="38" fill="#fff">90:07:200601:1587</text>
+<text x="42" y="617" font-family="Arial,sans-serif" font-size="13" fill="#bfdbd5">Схема по скриншоту. Не заменяет сведения ЕГРН.</text>
+</svg>
