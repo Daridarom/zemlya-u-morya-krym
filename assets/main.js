@@ -1,25 +1,25 @@
 /* Земля у моря — лёгкое поведение без сторонних JS-зависимостей */
 (function(){
 "use strict";
-const formUrl="https://forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f/";
-const formLink=document.getElementById("form-link");
+const frame=document.getElementById("ya-form");
 const chosen=document.getElementById("chosen-interest");
 const params=new URLSearchParams(location.search);
 const allowedParams=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","yclid"];
-if(formLink){
-  const url=new URL(formUrl);
-  for(const key of allowedParams){
-    const val=params.get(key);
-    if(val)url.searchParams.set(key,val.slice(0,250));
-  }
-  formLink.href=url.toString();
+// Сохраняем рекламную атрибуцию у Яндекс Формы, не собирая телефоны в HTML сайта.
+if(frame){
+ const url=new URL(frame.getAttribute("src"));
+ for(const key of allowedParams){
+   const val=params.get(key);
+   if(val)url.searchParams.set(key,val.slice(0,250));
+ }
+ frame.src=url.toString();
 }
-// Карточки ведут к одной заявке. Выбранное предложение показано как подсказка,
-// но не выдаётся за автозаполненное поле чужой формы.
+// Клик по карточке сохраняет контекст для человека. Поле внутри iframe
+// нельзя корректно заполнить без ID вопроса Яндекс Формы.
 document.querySelectorAll("[data-interest]").forEach(function(link){
  link.addEventListener("click",function(){
    const interest=link.getAttribute("data-interest");
-   if(chosen&&interest)chosen.textContent="Ваш интерес: "+interest+". Отметьте его в открывшейся анкете.";
+   if(chosen&&interest)chosen.textContent="Вы выбрали: "+interest+". Укажите этот вариант в форме.";
  });
 });
 const menu=document.querySelector(".menu-toggle");
@@ -35,7 +35,7 @@ if(menu&&mobileNav){
  mobileNav.querySelectorAll("a").forEach(function(a){a.addEventListener("click",close);});
  document.addEventListener("keydown",function(e){if(e.key==="Escape")close();});
 }
-// Снимки и иллюстративные кадастровые контуры открываются в полном размере.
+// Фотографии местности открываются в полном размере. Кадастровые снимки доступны отдельными ссылками.
 const viewer=document.getElementById("image-viewer");
 const viewerImage=document.getElementById("viewer-img");
 const viewerCaption=document.getElementById("viewer-caption");
