@@ -65,12 +65,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* hero */
 .hero{position:relative;padding:0;background:var(--sea-deep);color:#f4f2ea;overflow:hidden}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.95}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,30,29,0) 0%,rgba(8,30,29,.25) 40%,rgba(8,30,29,.88) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,30,29,.45) 0%,rgba(8,30,29,.55) 45%,rgba(8,30,29,.92) 100%)}
 .hero .wrap{position:relative;z-index:1;padding-block:clamp(120px,22vw,220px) clamp(36px,6vw,64px);display:grid;gap:22px}
 .hero h1,.hero .lead{text-shadow:0 1px 18px rgba(0,0,0,.35)}
 .hero h1{font-size:clamp(36px,6.4vw,72px);max-width:14ch;line-height:1.05}
 .hero .lead{color:#e3e6df;max-width:52ch}
-.hero .label{color:#e7c873}
+.hero .label{color:#fff;opacity:.9}
 .hero-price{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:15px;color:#d8ddd6;border-top:1px solid rgba(255,255,255,.22);padding-top:18px;margin-top:6px}
 .hero-price b{font:700 24px var(--display);color:#fff;display:block}
 
@@ -166,10 +166,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   .place-side figure{aspect-ratio:1}
   .azgard{grid-template-columns:1fr}
   .btns .btn{flex:1 1 100%}
-  .dock{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--card);border-top:1px solid var(--line);padding:10px var(--gut-r) calc(10px + env(safe-area-inset-bottom,0px)) var(--gut-l)}
+  .dock{display:flex;gap:10px;position:fixed;transition:transform .25s;left:0;right:0;bottom:0;z-index:40;background:var(--card);border-top:1px solid var(--line);padding:10px var(--gut-r) calc(10px + env(safe-area-inset-bottom,0px)) var(--gut-l)}
   .dock .btn{flex:1;min-height:48px;padding:0 12px;font-size:15px}
   .dock .btn-call{color:var(--ink)}
 }
+.dock.off{transform:translateY(110%)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 img{max-width:100%}
 </style>
@@ -194,11 +195,7 @@ img{max-width:100%}
         <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
         <a class="btn btn-call" href="tel:+79782964108">Позвонить</a>
       </div>
-      <div class="hero-price">
-        <span><b>1,2 млн ₽</b>третья линия</span>
-        <span><b>1,5 млн ₽</b>вторая линия</span>
-        <span><b>2 млн ₽</b>первая линия</span>
-      </div>
+      <div class="hero-price"><span><b>от 1,2 млн ₽</b>участок у моря</span><span><b>4–6 соток</b>в собственность</span><span><b>до 6 мес.</b>рассрочка</span></div>
     </div>
   </section>
 
@@ -314,12 +311,12 @@ img{max-width:100%}
     <div class="wrap">
       <div class="stack">
         <p class="label">Другие варианты</p>
-        <h2>Если нужно дешевле или под прописку</h2>
+        <h2>Дешевле, под прописку или больше земли</h2>
       </div>
       <div class="alt-grid">
-        <div class="alt"><h3>Посёлок «Скиф»</h3><p class="from">от 500 000 ₽</p><p>Клубный посёлок в 2 км от моря. Разные участки по расположению и коммуникациям.</p></div>
-        <div class="alt"><h3>СНТ в Керчи</h3><p class="from">от 700 000 ₽</p><p>«Коммунальник», «Горняк», «Вишенка». Можно построить дом и прописаться.</p></div>
-        <div class="alt"><h3>Крупные участки</h3><p class="from">от 4,5 млн ₽</p><p>30–50 соток в том же районе у Бухты Космонавтов. Для большого дома или своего проекта.</p></div>
+        <div class="alt"><h3>Посёлок «Скиф»</h3><p class="from">от 500 000 ₽</p><p>Клубный посёлок в 2 км от моря. Разные участки по расположению и коммуникациям.</p><a class="text-link" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Спросить в MAX →</a></div>
+        <div class="alt"><h3>СНТ в Керчи</h3><p class="from">от 700 000 ₽</p><p>«Коммунальник», «Горняк», «Вишенка». Можно построить дом и прописаться.</p><a class="text-link" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Спросить в MAX →</a></div>
+        <div class="alt"><h3>Крупные участки</h3><p class="from">от 4,5 млн ₽</p><p>30–50 соток в том же районе у Бухты Космонавтов. Для большого дома или своего проекта.</p><a class="text-link" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Спросить в MAX →</a></div>
       </div>
     </div>
   </section>
@@ -362,10 +359,15 @@ img{max-width:100%}
   </div>
 </footer>
 
-<nav class="dock" aria-label="Быстрая связь">
+<nav class="dock off" aria-label="Быстрая связь">
   <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
   <a class="btn btn-call" href="tel:+79782964108">Позвонить</a>
 </nav>
+<script>
+(function(){var d=document.querySelector('.dock');if(!d||!('IntersectionObserver' in window)){if(d)d.classList.remove('off');return}
+var vis=new Set();var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?vis.add(e.target):vis.delete(e.target)});d.classList.toggle('off',vis.size>0)},{threshold:0.15});
+document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}());
+</script>
 
 
 <script>
