@@ -30,13 +30,14 @@ html=data.decode("utf-8","replace")
 report("главная",status==200,f"HTTP {status}")
 for marker in ["2 000 000 ₽","1 500 000 ₽","1 200 000 ₽","+7 978 296-41-08","id=\"snt-kerch\"","forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f"]:
     report("содержимое: "+marker,marker in html)
-report("основные схемы",all(f'plot-{id}.svg' in html for id in ("1587","1621","2273")))
+report("крупные участки",all(f'map-{id}-hq.jpg' in html for id in ("1587","1621")))
+report("встроенная форма", 'id="ya-form"' in html)
 if a.production:
     report("рабочая версия без noindex",'noindex' not in html.lower())
     report("рабочая версия без плашки",'class="proto-bar"' not in html)
 else:
     report("прототип noindex",'noindex' in html.lower())
-for path in ("politika.html","assets/style.css","assets/main.js","assets/img/plot-1587.svg","assets/img/plot-1621.svg","assets/img/plot-2273.svg","robots.txt"):
+for path in ("politika.html","assets/style.css","assets/main.js","assets/img/map-1587-hq.jpg","assets/img/map-1621-hq.jpg","robots.txt"):
     code,body,typ=fetch(base+path)
     report(path,code==200 and len(body)>0,f"HTTP {code}, {len(body)} B")
 print("\nИтог: HTTP- и содержательные проверки выполнены. Отправка формы, CRM и модерация Директа НЕ проверены.")
