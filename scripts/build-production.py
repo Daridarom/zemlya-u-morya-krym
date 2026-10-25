@@ -46,9 +46,11 @@ def main() -> None:
     index = index.replace("</head>", f'<link rel="canonical" href="https://{domain}/">\n</head>', 1)
     if "https://forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f/" not in index:
         p.error("Не найдена согласованная Яндекс Форма")
-    for id in ("1587", "1621", "2273"):
-        if f"assets/img/plot-{id}.svg" not in index:
-            p.error(f"Не найдена векторная схема {id}")
+    for id in ("1587", "1621"):
+        if f"assets/img/map-{id}-hq.jpg" not in index:
+            p.error(f"Не найден источник кадастрового снимка {id}")
+    if 'id="ya-form"' not in index:
+        p.error("Не найдена встроенная форма заявок")
     (out / "index.html").write_text(index, encoding="utf-8")
     (out / "robots.txt").write_text(
         "User-agent: *\nAllow: /\nSitemap: https://" + domain + "/sitemap.xml\n", encoding="utf-8"
