@@ -446,3 +446,31 @@ a[href^="tel:"] { white-space: nowrap; }
 .image-viewer img.is-map { max-width: min(90vw, 560px); }
 .ya-form-policy { margin: 12px 12px 0; font-size: 14px; color: var(--muted); }
 .ya-form-policy a { color: var(--ink); }
+
+
+/* UX-аудит 25.10: локальный стек шрифтов, читаемые векторные планы, первый экран на телефоне. */
+body { font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif; }
+h1,h2,h3,.brand,.line-price,.price,.snt-price,.hero-facts strong,.snt-location-title { font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif; font-weight:750; }
+h1,h2,h3 { overflow-wrap:anywhere; }
+.btn { font-family:inherit; }
+.map-disclaimer { max-width:810px; color:#d7e9e6; font-size:13px; line-height:1.65; margin:18px 0 10px; }
+.map-disclaimer a { color:#fff; text-underline-offset:3px; }
+.parcel .map-open { min-height:260px; background:#e5eeea; }
+.parcel .map-open img { height:auto; max-height:350px; width:100%; max-width:100%; aspect-ratio:3/2; object-fit:contain; border-radius:10px; }
+.nearby-map { min-height:180px; }
+.nearby-map img { width:100%; height:auto; max-height:260px; object-fit:contain; }
+.image-viewer img.is-map { max-width:min(92vw,960px); max-height:77svh; }
+.market a { font-weight:700; color:#0f4c56; text-underline-offset:3px; }
+@media (max-width:760px) {
+ .hero-photo { height:37svh; min-height:215px; max-height:360px; }
+ .hero-inner { padding-top:20px; }
+ .hero h1 { font-size:clamp(30px,8vw,46px); line-height:1.13; }
+ .hero-lead { font-size:15px; }
+ .hero-actions .btn { flex:1 1 190px; padding-inline:12px; text-align:center; }
+ .parcels { gap:16px; }
+ .map-disclaimer { margin-bottom:24px; }
+ .site-nav { max-width:calc(100% - 24px); }
+}
+@media (prefers-reduced-motion: reduce) {
+ .photo-open img,.btn { transition:none !important; }
+}
