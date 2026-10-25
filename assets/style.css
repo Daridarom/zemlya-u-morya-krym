@@ -35,7 +35,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #a2
 .site-header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
 .nav-wrap{height:81px;display:flex;align-items:center;justify-content:space-between;gap:27px}
 .brand{display:flex;align-items:flex-start;flex-direction:column;text-decoration:none;font-size:17px;font-weight:740;letter-spacing:-.04em;line-height:1.15;color:var(--ink);white-space:nowrap}
-.brand small{font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-top:8px;color:var(--muted)}
+.brand small{display:block;font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-top:8px;color:var(--muted)}
 .desktop-nav{display:flex;align-items:center;justify-content:center;gap:clamp(15px,2vw,34px)}
 .desktop-nav a{font-size:13px;color:#445350;font-weight:570;text-decoration:none;white-space:nowrap}
 .desktop-nav a:hover,.header-phone:hover{color:var(--accent)}
@@ -107,16 +107,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #a2
 .tour-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;padding-top:12px;color:var(--muted)}
 .tour-footer a{color:var(--ink);font-weight:700}
 .alternatives{background:#fff}
-.alternative-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:50px}
-.alternative-card{display:flex;flex-direction:column;min-height:0;border:0;border-top:1px solid #bfc8c2;border-radius:0;background:#fff;box-shadow:none;overflow:visible}
-.alternative-photo{height:270px;background:#f2f4f0;display:grid;place-items:center;margin:20px 0 0;padding:15px}
-.alternative-photo img{width:100%;max-height:245px;object-fit:contain}
-.alternative-text{padding:25px 0 0;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
-.alternative-text .eyebrow{margin-bottom:13px}
-.alternative-text h3{font:400 clamp(27px,2.7vw,35px)/1.2 Georgia,"Times New Roman",serif;letter-spacing:-.02em}
-.alternative-price{font-size:25px;letter-spacing:-.04em;font-weight:600;margin:12px 0}
-.alternative-text>p:not(.eyebrow):not(.alternative-price){font-size:14px;color:var(--muted);line-height:1.75;max-width:50ch}
-.alternative-text>a{margin-top:12px;border-bottom:1px solid var(--ink);padding-bottom:3px;text-decoration:none;font-size:14px;font-weight:700}
+.alternative-grid{display:block}
+.alternative-card{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center;padding:28px 0 40px;border:0;border-top:1px solid #bcc5bf;border-radius:0;background:transparent;box-shadow:none;overflow:visible}
+.alternative-photo{height:300px;background:#f1f3ee;display:grid;place-items:center;padding:20px;min-width:0}
+.alternative-photo img{max-height:260px;width:100%;object-fit:contain}
+.alternative-text{padding:0;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.alternative-text .eyebrow{margin-bottom:12px}
+.alternative-text h3{font:400 clamp(31px,3vw,41px)/1.16 Georgia,"Times New Roman",serif;letter-spacing:-.024em}
+.alternative-price{font-size:27px;letter-spacing:-.03em;font-weight:600;margin:14px 0}
+.alternative-text>p:not(.eyebrow):not(.alternative-price){color:var(--muted);line-height:1.74;font-size:15px;max-width:52ch}
+.alternative-text>a{font-size:14px;font-weight:680;text-decoration:none;border-bottom:1px solid var(--ink);padding:0 0 4px;margin:10px 0 0}
+.snt-names{padding:14px 0 14px 25px;border-left:2px solid #b7c6bd;display:grid;gap:12px;max-width:380px}
+.snt-names strong{font:400 clamp(35px,3.5vw,50px)/1.2 Georgia,"Times New Roman",serif;color:var(--ink);margin:0 0 10px}
+.snt-names span{font-size:15px;color:var(--muted);padding-bottom:9px;border-bottom:1px solid var(--line)}
 .process{background:var(--stone)}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;list-style:none;margin:0;padding:0;border-top:1px solid #bac3bb}
 .steps li{padding:25px 4px 0 0;border:0}
@@ -208,8 +211,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #a2
  .parcel-caption{min-height:0}
  .tour-grid{gap:30px}
  .tour-launch{aspect-ratio:4/3}
- .alternative-grid{grid-template-columns:1fr;gap:35px}
+ .alternative-card{grid-template-columns:1fr;gap:18px;padding:27px 0 36px}
  .alternative-photo{height:210px}
+ .snt-names{padding:13px 0 13px 20px}
  .alternative-text{padding-top:17px}
  .steps{grid-template-columns:1fr 1fr;gap:20px}
  .steps li{padding:20px 0 0}
