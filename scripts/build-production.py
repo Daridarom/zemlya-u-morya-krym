@@ -36,21 +36,19 @@ def main() -> None:
     shutil.copytree(ROOT / "assets", out / "assets")
     shutil.copy2(ROOT / "politika.html", out / "politika.html")
     index = (ROOT / "index.html").read_text(encoding="utf-8")
-    # GitHub остаётся noindex-прототипом: снимаем плашку и запрет только в отдельной сборке.
-    index, banner_count = re.subn(r'<div class="proto-bar"[^>]*>.*?</div>\s*', "", index, count=1, flags=re.S)
-    if banner_count != 1:
-        p.error("Не найдена прототипная плашка: проверьте файл вручную")
-    index = re.sub(r'<meta name="robots" content="noindex, nofollow">', '<meta name="robots" content="index, follow">', index, count=1)
-    if 'content="index, follow"' not in index:
-        p.error("Не удалось выставить index, follow")
+    # GitHub Pages остаётся закрытым от поисковиков: запрет снимается только в отдельной сборке.
+    index, n = re.subn(r'<meta name="robots" content="[^"]*">', '<meta name="robots" content="index, follow">', index, count=1)
+    if n != 1:
+        p.error("Не найден тег robots: проверьте файл вручную")
+    index = index.replace("https://daridarom.github.io/zemlya-u-morya-krym/", f"https://{domain}/")
+    if "github.io" in index:
+        p.error("В странице остались ссылки на github.io")
     index = index.replace("</head>", f'<link rel="canonical" href="https://{domain}/">\n</head>', 1)
     if "https://forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f/" not in index:
         p.error("Не найдена согласованная Яндекс Форма")
-    for id in ("1587", "1621"):
-        if f"assets/img/map-{id}-hq.jpg" not in index:
-            p.error(f"Не найден источник кадастрового снимка {id}")
-    if 'id="ya-form"' not in index:
-        p.error("Не найдена встроенная форма заявок")
+    for path in re.findall(r'(?:src|href)="(assets/[^"]+)"', index):
+        if not (ROOT / path).exists():
+            p.error(f"Нет файла {path}")
     (out / "index.html").write_text(index, encoding="utf-8")
     (out / "robots.txt").write_text(
         "User-agent: *\nAllow: /\nSitemap: https://" + domain + "/sitemap.xml\n", encoding="utf-8"
