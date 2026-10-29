@@ -202,6 +202,20 @@ img{max-width:100%}
 .final .form-note a{color:inherit}
 .final .form-title{margin:0 4px 4px;font-weight:600;font-size:17px;line-height:1.35}
 .final .form-card iframe{display:block;width:100%;min-height:560px;border:0}
+.quiz{background:var(--chalk)}
+.q-step[hidden],.q-result[hidden]{display:none}
+.quiz .wrap{display:grid;gap:18px;max-width:760px}
+.q-text{font:600 18px/1.3 var(--display);margin:6px 0 4px}
+.q-opts{display:grid;gap:10px}
+.q-opts button{min-height:52px;padding:12px 18px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:500 16px/1.3 var(--body);text-align:left;cursor:pointer}
+.q-opts button:hover,.q-opts button:focus-visible{border-color:var(--sea);outline:none}
+.q-result{background:var(--card);border:1.5px solid var(--sea);border-radius:18px;padding:20px;display:grid;gap:12px}
+.q-tag{margin:0;font:600 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--straw)}
+.q-title{font-size:22px}
+.q-desc{margin:0;color:var(--muted)}
+.q-result .btns{display:flex;flex-wrap:wrap;gap:10px}
+.q-reset{justify-self:start;background:none;border:0;padding:4px 0;color:var(--muted);text-decoration:underline;font:500 14px var(--body);cursor:pointer}
+@media (min-width:761px){.q-opts{grid-template-columns:1fr 1fr}}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Почему здесь такие цены?", "acceptedAnswer": {"@type": "Answer", "text": "Восток Крыма пока менее известен, и спрос здесь ниже. Это не скидка за недостатки: все участки в собственности, документы в порядке."}}, {"@type": "Question", "name": "Сколько метров до моря?", "acceptedAnswer": {"@type": "Answer", "text": "Первая линия — 50 метров до воды, вторая и третья — до 100 метров. Точное расстояние до каждого свободного участка покажу на карте и на видео."}}, {"@type": "Question", "name": "Есть ли ограничения на участках?", "acceptedAnswer": {"@type": "Answer", "text": "У части участков есть охранные зоны, например вдоль коммуникаций. Они указаны в выписке ЕГРН, и по каждому участку я скажу об этом заранее, до сделки."}}, {"@type": "Question", "name": "Можно ли посмотреть участок, не приезжая?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Я приеду на участок и покажу его по видео: подъезд, границы, соседей, вид на море. Приехать лично можно позже, перед сделкой."}}, {"@type": "Question", "name": "Есть ли свет и вода?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от участка. По каждому варианту расскажу, что уже подведено и как подключить остальное. С подключением помогаем."}}, {"@type": "Question", "name": "Можно ли построить дом?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от разрешённого использования конкретного участка. По каждому варианту скажу, что можно строить. Если строительство возможно, построим дом под ключ."}}, {"@type": "Question", "name": "Есть ли рассрочка?", "acceptedAnswer": {"@type": "Answer", "text": "Да, до 6 месяцев, первый взнос от 100 000 ₽. Условия по конкретному участку расскажу в разговоре."}}, {"@type": "Question", "name": "Как защищены деньги?", "acceptedAnswer": {"@type": "Answer", "text": "Расчёты проходят через сервис безопасных сделок Домклик. Продавец получает деньги после регистрации перехода права в Росреестре."}}]}</script>
@@ -270,6 +284,41 @@ img{max-width:100%}
         </div>
       </div>
       <p class="under-note"><b>Рассрочка до 6 месяцев,</b> первый взнос от 100 000 ₽.</p>
+    </div>
+  </section>
+
+
+  <section class="quiz" id="podbor">
+    <div class="wrap">
+      <p class="label">Подбор за 30 секунд</p>
+      <h2>Какой участок вам подойдёт</h2>
+      <div class="q-step" data-step="1">
+        <p class="q-text">1. Какой бюджет?</p>
+        <div class="q-opts">
+          <button type="button" data-k="budget" data-v="lt1">До 1 млн ₽</button>
+          <button type="button" data-k="budget" data-v="1to2">1–2 млн ₽</button>
+          <button type="button" data-k="budget" data-v="gt2">Больше 2 млн ₽</button>
+        </div>
+      </div>
+      <div class="q-step" data-step="2" hidden>
+        <p class="q-text">2. Что для вас главное?</p>
+        <div class="q-opts">
+          <button type="button" data-k="goal" data-v="sea">Жить у самого моря</button>
+          <button type="button" data-k="goal" data-v="cheap">Подешевле, море рядом</button>
+          <button type="button" data-k="goal" data-v="home">Построить дом и прописаться</button>
+          <button type="button" data-k="goal" data-v="big">Много земли</button>
+        </div>
+      </div>
+      <div class="q-result" hidden>
+        <p class="q-tag">Вам подойдёт</p>
+        <h3 class="q-title"></h3>
+        <p class="q-desc"></p>
+        <div class="btns">
+          <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Получить подборку в MAX</a>
+          <a class="btn btn-call" href="#zayavka">Оставить телефон</a>
+        </div>
+        <button type="button" class="q-reset">Пройти заново</button>
+      </div>
     </div>
   </section>
 
@@ -429,6 +478,32 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
   },true);
   /* Начал заполнять встроенную форму: фокус ушёл в её окно */
   var sent=false; window.addEventListener('blur',function(){ if(!sent && document.activeElement && document.activeElement.id==='ya-form'){ sent=true; goal('form_open'); } });
+}());
+</script>
+<script>
+/* Квиз-помощник: два вопроса → подходящее направление → MAX или форма */
+(function(){
+  var root=document.getElementById('podbor'); if(!root) return;
+  var a={}, steps=root.querySelectorAll('.q-step'), res=root.querySelector('.q-result');
+  var R={
+    sea:{t:'Участок 4–6 соток у моря рядом со Щёлкино',d:'50–100 метров до воды, закаты в море. Цены: 1,2 млн ₽ (3-я линия), 1,5 млн ₽ (2-я), 2 млн ₽ (1-я, 50 м от моря). Рассрочка до 6 месяцев.'},
+    seaLow:{t:'Посёлок «Скиф» — в 2 км от моря',d:'В вашем бюджете — «Скиф» от 500 000 ₽, в 2 км от моря. Ближайший вариант у самого моря — 3-я линия за 1,2 млн ₽, есть рассрочка до 6 месяцев с первым взносом от 100 000 ₽.'},
+    cheap:{t:'Посёлок «Скиф» — в 2 км от моря',d:'Участки от 500 000 ₽. Разные варианты по расположению и коммуникациям — пришлю, что свободно.'},
+    home:{t:'СНТ в Керчи',d:'Участки от 700 000 ₽: можно построить дом и прописаться. Если строительство возможно, построим дом под ключ.'},
+    big:{t:'Крупный участок 30–50 соток',d:'От 4,5 млн ₽, в районе Бухты Космонавтов. Для большого дома или своего проекта.'}
+  };
+  function goal(n){ if(window.ym&&window.YM_ID) window.ym(window.YM_ID,'reachGoal',n); }
+  function show(n){ steps.forEach(function(s){ s.hidden = s.getAttribute('data-step')!==String(n); }); res.hidden = n!=='res'; }
+  root.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    if(b.classList.contains('q-reset')){ a={}; show(1); return; }
+    var k=b.getAttribute('data-k'); if(!k) return;
+    a[k]=b.getAttribute('data-v');
+    if(k==='budget'){ if(!a.started){ a.started=1; goal('quiz_start'); } show(2); return; }
+    var key=a.goal==='sea' && a.budget==='lt1' ? 'seaLow' : a.goal;
+    var r=R[key]; root.querySelector('.q-title').textContent=r.t; root.querySelector('.q-desc').textContent=r.d;
+    show('res'); goal('quiz_done'); res.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
 }());
 </script>
 <script src="https://forms.yandex.ru/_static/embed.js"></script>
