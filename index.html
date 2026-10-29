@@ -194,9 +194,12 @@ img{max-width:100%}
 .cookie[hidden]{display:none}
 .cookie p{margin:0;flex:1}
 .cookie a{color:inherit}
-.cookie .btn{min-height:40px;padding:0 16px;font-size:14px;flex:none}
+.cookie .btn{min-height:40px;padding:0 14px;font-size:14px;flex:none}
+.cookie-btns{display:flex;gap:8px;flex:none}
 @media (max-width:760px){.cookie{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));padding:8px 10px 8px 14px;font-size:13px}body:has(.dock:not(.off)) .cookie{bottom:calc(78px + env(safe-area-inset-bottom,0px))}}
 .final .form-card{background:#fff;color:#1c2422;border-radius:18px;padding:18px 14px 6px;margin-top:6px}
+.final .form-note{margin:0 4px 6px;font-size:13px;color:#5b6662}
+.final .form-note a{color:inherit}
 .final .form-title{margin:0 4px 4px;font-weight:600;font-size:17px;line-height:1.35}
 .final .form-card iframe{display:block;width:100%;min-height:560px;border:0}
 </style>
@@ -359,6 +362,7 @@ img{max-width:100%}
       <p class="phone-big">+7 978 296-41-08</p>
       <div class="form-card" id="zayavka">
         <p class="form-title">Не пользуетесь MAX? Оставьте телефон — я перезвоню</p>
+        <p class="form-note">Нажимая «Отправить», вы даёте <a href="soglasie.html" target="_blank">согласие на обработку персональных данных</a>.</p>
         <iframe id="ya-form" src="https://forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f/?iframe=1" name="ya-form-6adc777e852af3c4d5fc9a8f" title="Заявка на подбор участка" loading="lazy"></iframe>
       </div>
     </div>
@@ -368,13 +372,13 @@ img{max-width:100%}
 <footer>
   <div class="wrap">
     <span>ООО «Точка притяжения» · ИНН 9111030208 · ОГРН 1239100010731</span>
-    <span>Сведения об участках подтверждаются выпиской ЕГРН · <a href="politika.html">Персональные данные</a></span>
+    <span>Сведения об участках подтверждаются выпиской ЕГРН · <a href="politika.html">Политика конфиденциальности</a> · <a href="soglasie.html">Согласие на обработку данных</a></span>
   </div>
 </footer>
 
 <div class="cookie" id="cookie" hidden>
-  <p>Сайт использует cookies и Яндекс Метрику. <a href="politika.html#cookies">Подробнее</a></p>
-  <button type="button" class="btn btn-call" id="cookie-ok">Понятно</button>
+  <p>Можно мы будем собирать статистику посещений через Яндекс Метрику (cookies)? <a href="politika.html#cookies">Подробнее</a></p>
+  <div class="cookie-btns"><button type="button" class="btn btn-call" id="cookie-no">Нет</button><button type="button" class="btn btn-max" id="cookie-ok">Принять</button></div>
 </div>
 <nav class="dock off" aria-label="Быстрая связь">
   <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
@@ -407,9 +411,13 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
 <script>
 (function(){
   /* Плашка cookies: показываем один раз */
-  var c=document.getElementById('cookie'),k='cookie-ok';
-  try{ if(!localStorage.getItem(k)) c.hidden=false; }catch(e){ c.hidden=false; }
-  document.getElementById('cookie-ok').addEventListener('click',function(){ c.hidden=true; try{localStorage.setItem(k,'1')}catch(e){} });
+  /* Метрика включается только после согласия посетителя на cookies */
+  var c=document.getElementById('cookie'),k='cookie-consent',v=null;
+  try{ v=localStorage.getItem(k); }catch(e){}
+  if(v==='yes'){ if(window.loadYM) window.loadYM(); } else if(v!=='no'){ c.hidden=false; }
+  function answer(val){ c.hidden=true; try{localStorage.setItem(k,val)}catch(e){} if(val==='yes'&&window.loadYM) window.loadYM(); }
+  document.getElementById('cookie-ok').addEventListener('click',function(){ answer('yes'); });
+  document.getElementById('cookie-no').addEventListener('click',function(){ answer('no'); });
   /* Цели Метрики: переход в MAX, звонок, открытие формы */
   function goal(name){ if(window.ym && window.YM_ID) window.ym(window.YM_ID,'reachGoal',name); }
   document.addEventListener('click',function(e){
