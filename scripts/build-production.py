@@ -16,6 +16,8 @@ def main() -> None:
     p.add_argument("--form-verified", action="store_true", help="Проверена реальная доставка тестовой заявки")
     p.add_argument("--policy-reviewed", action="store_true", help="Юридически согласована политика и оператор")
     p.add_argument("--output", default="dist", help="Папка итоговой сборки")
+    p.add_argument("--preview", action="store_true", help="Предпросмотр на домене: страница остаётся закрытой от поисковиков")
+    p.add_argument("--alias", action="append", default=[], help="Дополнительный домен, который перенаправляется на основной (можно кириллицей)")
     args = p.parse_args()
     domain = args.domain.strip().lower()
     if domain.startswith(("http://", "https://")):
@@ -25,7 +27,7 @@ def main() -> None:
         domain = parts.netloc
     if not re.fullmatch(r"[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+", domain):
         p.error("Некорректное имя домена")
-    if not args.form_verified or not args.policy_reviewed:
+    if not args.preview and (not args.form_verified or not args.policy_reviewed):
         p.error("Остановлено: до рекламы обязательны --form-verified и --policy-reviewed")
     out = Path(args.output).resolve()
     if out == ROOT or ROOT in out.parents and out == ROOT / "assets":
@@ -33,11 +35,11 @@ def main() -> None:
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
-    shutil.copytree(ROOT / "assets", out / "assets")
     shutil.copy2(ROOT / "politika.html", out / "politika.html")
     index = (ROOT / "index.html").read_text(encoding="utf-8")
     # GitHub Pages остаётся закрытым от поисковиков: запрет снимается только в отдельной сборке.
-    index, n = re.subn(r'<meta name="robots" content="[^"]*">', '<meta name="robots" content="index, follow">', index, count=1)
+    robots = "noindex, nofollow" if args.preview else "index, follow"
+    index, n = re.subn(r'<meta name="robots" content="[^"]*">', f'<meta name="robots" content="{robots}">', index, count=1)
     if n != 1:
         p.error("Не найден тег robots: проверьте файл вручную")
     index = index.replace("https://daridarom.github.io/zemlya-u-morya-krym/", f"https://{domain}/")
@@ -46,19 +48,35 @@ def main() -> None:
     index = index.replace("</head>", f'<link rel="canonical" href="https://{domain}/">\n</head>', 1)
     if "https://forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f/" not in index:
         p.error("Не найдена согласованная Яндекс Форма")
-    for path in re.findall(r'(?:src|href)="(assets/[^"]+)"', index):
+    # В выпуск попадают только файлы, на которые ссылается страница.
+    for path in sorted(set(re.findall(r'(?:src|href)="(assets/[^"]+)"', index))):
         if not (ROOT / path).exists():
             p.error(f"Нет файла {path}")
+        (out / path).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / path, out / path)
     (out / "index.html").write_text(index, encoding="utf-8")
-    (out / "robots.txt").write_text(
-        "User-agent: *\nAllow: /\nSitemap: https://" + domain + "/sitemap.xml\n", encoding="utf-8"
+    if args.preview:
+        (out / "robots.txt").write_text("User-agent: *\nDisallow: /\n", encoding="utf-8")
+    else:
+        (out / "robots.txt").write_text(
+            "User-agent: *\nAllow: /\nSitemap: https://" + domain + "/sitemap.xml\n", encoding="utf-8"
+        )
+        (out / "sitemap.xml").write_text(
+            f'<?xml version="1.0" encoding="UTF-8"?>\n'
+            f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            f'<url><loc>https://{domain}/</loc></url></urlset>\n', encoding="utf-8"
+        )
+    # Все прочие адреса (www, зеркала) ведут на основной домен.
+    hosts = [domain] + [a.strip().lower().encode("idna").decode() for a in args.alias]
+    (out / ".htaccess").write_text(
+        "AddDefaultCharset UTF-8\n"
+        "RewriteEngine On\n"
+        f"RewriteCond %{{HTTP_HOST}} !^{re.escape(domain)}$ [NC]\n"
+        f"RewriteRule ^(.*)$ %{{REQUEST_SCHEME}}://{domain}/$1 [R=301,L]\n"
+        "<IfModule mod_expires.c>\nExpiresActive On\nExpiresByType image/webp \"access plus 30 days\"\n</IfModule>\n"
+        f"# Зеркала: {', '.join(hosts[1:]) or 'нет'}\n",
+        encoding="utf-8",
     )
-    (out / "sitemap.xml").write_text(
-        f'<?xml version="1.0" encoding="UTF-8"?>\n'
-        f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-        f'<url><loc>https://{domain}/</loc></url></urlset>\n', encoding="utf-8"
-    )
-    (out / ".nojekyll").write_text("", encoding="utf-8")
     print(f"Сборка подготовлена: {out}. Перед переключением рекламы проверьте HTTPS, форму и цели.")
 
 if __name__ == "__main__":
