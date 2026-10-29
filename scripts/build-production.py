@@ -77,7 +77,7 @@ def main() -> None:
     index = index.replace("<!--METRIKA-->", metrika)
     (out / "index.html").write_text(index, encoding="utf-8")
     if args.preview:
-        (out / "robots.txt").write_text("User-agent: *\nDisallow: /\n", encoding="utf-8")
+        (out / "robots.txt").write_text("User-agent: YandexDirect\nAllow: /\n\nUser-agent: *\nDisallow: /\n", encoding="utf-8")
     else:
         (out / "robots.txt").write_text(
             "User-agent: *\nAllow: /\nSitemap: https://" + domain + "/sitemap.xml\n", encoding="utf-8"

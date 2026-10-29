@@ -216,6 +216,12 @@ img{max-width:100%}
 .q-result .btns{display:flex;flex-wrap:wrap;gap:10px}
 .q-reset{justify-self:start;background:none;border:0;padding:4px 0;color:var(--muted);text-decoration:underline;font:500 14px var(--body);cursor:pointer}
 @media (min-width:761px){.q-opts{grid-template-columns:1fr 1fr}}
+.hero-alt{margin:-6px 0 0;font-size:15px;color:#fff;opacity:.92}
+.hero-alt a{color:#fff;font-weight:600;text-underline-offset:3px}
+.toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:60;background:#1c2422;color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:calc(100% - 32px);text-align:center}
+.toast[hidden]{display:none}
+.final .form-card{max-width:720px}
+@media (min-width:761px){.quiz{padding-block:clamp(48px,6vw,72px)}}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Почему здесь такие цены?", "acceptedAnswer": {"@type": "Answer", "text": "Восток Крыма пока менее известен, и спрос здесь ниже. Это не скидка за недостатки: все участки в собственности, документы в порядке."}}, {"@type": "Question", "name": "Сколько метров до моря?", "acceptedAnswer": {"@type": "Answer", "text": "Первая линия — 50 метров до воды, вторая и третья — до 100 метров. Точное расстояние до каждого свободного участка покажу на карте и на видео."}}, {"@type": "Question", "name": "Есть ли ограничения на участках?", "acceptedAnswer": {"@type": "Answer", "text": "У части участков есть охранные зоны, например вдоль коммуникаций. Они указаны в выписке ЕГРН, и по каждому участку я скажу об этом заранее, до сделки."}}, {"@type": "Question", "name": "Можно ли посмотреть участок, не приезжая?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Я приеду на участок и покажу его по видео: подъезд, границы, соседей, вид на море. Приехать лично можно позже, перед сделкой."}}, {"@type": "Question", "name": "Есть ли свет и вода?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от участка. По каждому варианту расскажу, что уже подведено и как подключить остальное. С подключением помогаем."}}, {"@type": "Question", "name": "Можно ли построить дом?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от разрешённого использования конкретного участка. По каждому варианту скажу, что можно строить. Если строительство возможно, построим дом под ключ."}}, {"@type": "Question", "name": "Есть ли рассрочка?", "acceptedAnswer": {"@type": "Answer", "text": "Да, до 6 месяцев, первый взнос от 100 000 ₽. Условия по конкретному участку расскажу в разговоре."}}, {"@type": "Question", "name": "Как защищены деньги?", "acceptedAnswer": {"@type": "Answer", "text": "Расчёты проходят через сервис безопасных сделок Домклик. Продавец получает деньги после регистрации перехода права в Росреестре."}}]}</script>
@@ -233,12 +239,13 @@ img{max-width:100%}
     <img src="assets/photos/hero.webp" alt="Берег Азовского моря у Щёлкино" fetchpriority="high">
     <div class="wrap">
       <p class="label">Крым · Азовское море</p>
-      <h1>Свой участок у Азовского моря рядом со Щёлкино</h1>
-      <p class="lead">Участки 4–6 соток в собственности, <span class="nw">50–100 метров</span> до воды и закаты прямо в море. Я живу здесь: покажу участок по видео и проведу сделку, пока вы дома.</p>
+      <h1>Свой участок у Азовского моря в Крыму</h1>
+      <p class="lead">Рядом с городом Щёлкино. Участки <span class="nw">4–6 соток</span> в собственности, <span class="nw">50–100 метров</span> до воды и закаты прямо в море. Я живу здесь: покажу участок по видео и проведу сделку, пока вы дома.</p>
       <div class="btns">
-        <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Получить варианты в MAX</a>
+        <a class="btn btn-max" data-msg="Здравствуйте! Интересуют участки у моря в Крыму, рядом со Щёлкино. Пришлите, пожалуйста, свободные варианты и видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Получить варианты в MAX</a>
         <a class="btn btn-call" href="tel:+79782964108">Позвонить</a>
       </div>
+      <p class="hero-alt">Не пользуетесь MAX? <a href="#zayavka">Оставьте телефон</a> — перезвоню.</p>
       <div class="hero-price"><span><b>от 1,2 млн ₽</b>участок у моря</span><span><b>4–6 соток</b>в собственность</span><span><b>до 6 мес.</b>рассрочка</span></div>
     </div>
   </section>
@@ -264,23 +271,23 @@ img{max-width:100%}
       <div class="stack">
         <p class="label">Цены</p>
         <h2>Участки у моря: <span class="nw">50–100 метров</span> до воды</h2>
-        <p class="lead">Чем ближе к воде, тем дороже. Свободных участков на каждой линии немного, поэтому актуальный список с видео пришлю в сообщении.</p>
+        <p class="lead">Чем ближе к воде, тем дороже. Актуальный список свободных участков с видео пришлю в сообщении.</p>
       </div>
       <div class="lines">
         <div class="line">
           <div class="line-no">1<small>линия</small></div>
           <div class="stack" style="gap:8px"><h3>Ближе всего к воде</h3><p class="dist">50 м от моря</p></div>
-          <div class="line-price">2 000 000 ₽<a href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
+          <div class="line-price">2 000 000 ₽<a data-msg="Здравствуйте! Интересует участок у моря: 1-я линия, 50 м от моря, 2 млн ₽. Что сейчас свободно? Пришлите, пожалуйста, видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
         </div>
         <div class="line">
           <div class="line-no">2<small>линия</small></div>
           <div class="stack" style="gap:8px"><h3>Второй ряд от моря</h3><p class="dist">до 100 м от моря</p></div>
-          <div class="line-price">1 500 000 ₽<a href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
+          <div class="line-price">1 500 000 ₽<a data-msg="Здравствуйте! Интересует участок у моря: 2-я линия, до 100 м от моря, 1,5 млн ₽. Что сейчас свободно? Пришлите, пожалуйста, видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
         </div>
         <div class="line">
           <div class="line-no">3<small>линия</small></div>
           <div class="stack" style="gap:8px"><h3>Самый доступный вариант у моря</h3><p class="dist">до 100 м от моря</p></div>
-          <div class="line-price">1 200 000 ₽<a href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
+          <div class="line-price">1 200 000 ₽<a data-msg="Здравствуйте! Интересует участок у моря: 3-я линия, до 100 м от моря, 1,2 млн ₽. Что сейчас свободно? Пришлите, пожалуйста, видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
         </div>
       </div>
       <p class="under-note"><b>Рассрочка до 6 месяцев,</b> первый взнос от 100 000 ₽.</p>
@@ -314,7 +321,7 @@ img{max-width:100%}
         <h3 class="q-title"></h3>
         <p class="q-desc"></p>
         <div class="btns">
-          <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Получить подборку в MAX</a>
+          <a class="btn btn-max q-max" data-msg="Здравствуйте! Интересуют участки у моря в Крыму, рядом со Щёлкино. Пришлите, пожалуйста, свободные варианты и видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Скопировать запрос и открыть MAX</a>
           <a class="btn btn-call" href="#zayavka">Оставить телефон</a>
         </div>
         <button type="button" class="q-reset">Пройти заново</button>
@@ -361,7 +368,7 @@ img{max-width:100%}
           <li><b>Документы.</b> Присылаю выписку ЕГРН до сделки.</li>
           <li><b>Сделка.</b> Безопасные расчёты через Домклик, регистрация в Росреестре.</li>
         </ol>
-        <div class="btns" style="margin-top:6px"><a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Получить варианты в MAX</a></div>
+        <div class="btns" style="margin-top:6px"><a class="btn btn-max" data-msg="Здравствуйте! Интересуют участки у моря в Крыму, рядом со Щёлкино. Пришлите, пожалуйста, свободные варианты и видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Получить варианты в MAX</a></div>
       </div>
     </div>
   </section>
@@ -373,9 +380,9 @@ img{max-width:100%}
         <h2>Дешевле, под прописку или больше земли</h2>
       </div>
       <div class="alt-grid">
-        <div class="alt"><h3>Посёлок «Скиф»</h3><p class="from">от 500 000 ₽</p><p>Клубный посёлок в 2 км от моря. Разные участки по расположению и коммуникациям.</p><a class="text-link" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Спросить в MAX →</a></div>
-        <div class="alt"><h3>СНТ в Керчи</h3><p class="from">от 700 000 ₽</p><p>«Коммунальник», «Горняк», «Вишенка». Можно построить дом и прописаться.</p><a class="text-link" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Спросить в MAX →</a></div>
-        <div class="alt"><h3>Крупные участки</h3><p class="from">от 4,5 млн ₽</p><p>30–50 соток в том же районе у Бухты Космонавтов. Для большого дома или своего проекта.</p><a class="text-link" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Спросить в MAX →</a></div>
+        <div class="alt"><h3>Посёлок «Скиф»</h3><p class="from">от 500 000 ₽</p><p>Клубный посёлок в 2 км от моря. Разные участки по расположению и коммуникациям.</p><a class="text-link" data-msg="Здравствуйте! Интересует участок в посёлке «Скиф» (от 500 000 ₽). Пришлите, пожалуйста, свободные варианты." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Спросить в MAX →</a></div>
+        <div class="alt"><h3>СНТ в Керчи</h3><p class="from">от 700 000 ₽</p><p>«Коммунальник», «Горняк», «Вишенка». Можно построить дом и прописаться.</p><a class="text-link" data-msg="Здравствуйте! Интересует участок в СНТ в Керчи (от 700 000 ₽), чтобы построить дом. Пришлите, пожалуйста, свободные варианты." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Спросить в MAX →</a></div>
+        <div class="alt"><h3>Крупные участки</h3><p class="from">от 4,5 млн ₽</p><p>30–50 соток в том же районе у Бухты Космонавтов. Для большого дома или своего проекта.</p><a class="text-link" data-msg="Здравствуйте! Интересует крупный участок 30–50 соток (от 4,5 млн ₽). Пришлите, пожалуйста, свободные варианты." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Спросить в MAX →</a></div>
       </div>
     </div>
   </section>
@@ -405,7 +412,7 @@ img{max-width:100%}
       <h2>Напишите бюджет — пришлю свободные участки с видео</h2>
       <p class="lead">Достаточно одного сообщения: бюджет и для чего участок. Отвечаю сам, без колл-центра.</p>
       <div class="btns">
-        <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Получить варианты в MAX</a>
+        <a class="btn btn-max" data-msg="Здравствуйте! Интересуют участки у моря в Крыму, рядом со Щёлкино. Пришлите, пожалуйста, свободные варианты и видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Получить варианты в MAX</a>
         <a class="btn btn-call" href="tel:+79782964108">Позвонить</a>
       </div>
       <p class="phone-big">+7 978 296-41-08</p>
@@ -421,7 +428,7 @@ img{max-width:100%}
 <footer>
   <div class="wrap">
     <span>ООО «Точка притяжения» · ИНН 9111030208 · ОГРН 1239100010731</span>
-    <span>Сведения об участках подтверждаются выпиской ЕГРН · <a href="politika.html">Политика конфиденциальности</a> · <a href="soglasie.html">Согласие на обработку данных</a></span>
+    <span>Сведения об участках подтверждаются выпиской ЕГРН · <a href="politika.html">Политика конфиденциальности</a> · <a href="soglasie.html">Согласие на обработку данных</a> · <a href="#" id="cookie-settings">Настройки cookies</a></span>
   </div>
 </footer>
 
@@ -429,8 +436,9 @@ img{max-width:100%}
   <p>Можно мы будем собирать статистику посещений через Яндекс Метрику (cookies)? <a href="politika.html#cookies">Подробнее</a></p>
   <div class="cookie-btns"><button type="button" class="btn btn-call" id="cookie-no">Нет</button><button type="button" class="btn btn-max" id="cookie-ok">Принять</button></div>
 </div>
+<div class="toast" id="toast" role="status" hidden>Текст запроса скопирован — вставьте его в чат MAX</div>
 <nav class="dock off" aria-label="Быстрая связь">
-  <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
+  <a class="btn btn-max" data-msg="Здравствуйте! Интересуют участки у моря в Крыму, рядом со Щёлкино. Пришлите, пожалуйста, свободные варианты и видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
   <a class="btn btn-call" href="tel:+79782964108">Позвонить</a>
 </nav>
 <script>
@@ -467,6 +475,14 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
   function answer(val){ c.hidden=true; try{localStorage.setItem(k,val)}catch(e){} if(val==='yes'&&window.loadYM) window.loadYM(); }
   document.getElementById('cookie-ok').addEventListener('click',function(){ answer('yes'); });
   document.getElementById('cookie-no').addEventListener('click',function(){ answer('no'); });
+  document.getElementById('cookie-settings').addEventListener('click',function(e){ e.preventDefault(); c.hidden=false; });
+  /* Готовый текст запроса: копируем при переходе в MAX — личный чат не принимает текст в ссылке */
+  var t=document.getElementById('toast'),tt;
+  document.addEventListener('click',function(e){
+    var a=e.target.closest && e.target.closest('a[data-msg]'); if(!a) return;
+    var m=a.getAttribute('data-msg');
+    try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(m).then(function(){ t.hidden=false; clearTimeout(tt); tt=setTimeout(function(){t.hidden=true},4000); },function(){}); } }catch(err){}
+  },true);
   /* Цели Метрики: переход в MAX, звонок, открытие формы */
   function goal(name){ if(window.ym && window.YM_ID) window.ym(window.YM_ID,'reachGoal',name); }
   document.addEventListener('click',function(e){
@@ -502,6 +518,8 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
     if(k==='budget'){ if(!a.started){ a.started=1; goal('quiz_start'); } show(2); return; }
     var key=a.goal==='sea' && a.budget==='lt1' ? 'seaLow' : a.goal;
     var r=R[key]; root.querySelector('.q-title').textContent=r.t; root.querySelector('.q-desc').textContent=r.d;
+    var B={lt1:'до 1 млн ₽','1to2':'1–2 млн ₽',gt2:'больше 2 млн ₽'}[a.budget];
+    root.querySelector('.q-max').setAttribute('data-msg','Здравствуйте! Прошёл подбор на сайте: '+r.t+', бюджет '+B+'. Пришлите, пожалуйста, свободные варианты и видео.');
     show('res'); goal('quiz_done'); res.scrollIntoView({behavior:'smooth',block:'nearest'});
   });
 }());
