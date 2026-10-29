@@ -196,6 +196,9 @@ img{max-width:100%}
 .cookie a{color:inherit}
 .cookie .btn{min-height:40px;padding:0 16px;font-size:14px;flex:none}
 @media (max-width:760px){.cookie{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));padding:8px 10px 8px 14px;font-size:13px}body:has(.dock:not(.off)) .cookie{bottom:calc(78px + env(safe-area-inset-bottom,0px))}}
+.final .form-card{background:#fff;color:#1c2422;border-radius:18px;padding:18px 14px 6px;margin-top:6px}
+.final .form-title{margin:0 4px 4px;font-weight:600;font-size:17px;line-height:1.35}
+.final .form-card iframe{display:block;width:100%;min-height:560px;border:0}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Почему здесь такие цены?", "acceptedAnswer": {"@type": "Answer", "text": "Восток Крыма пока менее известен, и спрос здесь ниже. Это не скидка за недостатки: все участки в собственности, документы в порядке."}}, {"@type": "Question", "name": "Сколько метров до моря?", "acceptedAnswer": {"@type": "Answer", "text": "Первая линия — 50 метров до воды, вторая и третья — до 100 метров. Точное расстояние до каждого свободного участка покажу на карте и на видео."}}, {"@type": "Question", "name": "Есть ли ограничения на участках?", "acceptedAnswer": {"@type": "Answer", "text": "У части участков есть охранные зоны, например вдоль коммуникаций. Они указаны в выписке ЕГРН, и по каждому участку я скажу об этом заранее, до сделки."}}, {"@type": "Question", "name": "Можно ли посмотреть участок, не приезжая?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Я приеду на участок и покажу его по видео: подъезд, границы, соседей, вид на море. Приехать лично можно позже, перед сделкой."}}, {"@type": "Question", "name": "Есть ли свет и вода?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от участка. По каждому варианту расскажу, что уже подведено и как подключить остальное. С подключением помогаем."}}, {"@type": "Question", "name": "Можно ли построить дом?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от разрешённого использования конкретного участка. По каждому варианту скажу, что можно строить. Если строительство возможно, построим дом под ключ."}}, {"@type": "Question", "name": "Есть ли рассрочка?", "acceptedAnswer": {"@type": "Answer", "text": "Да, до 6 месяцев, первый взнос от 100 000 ₽. Условия по конкретному участку расскажу в разговоре."}}, {"@type": "Question", "name": "Как защищены деньги?", "acceptedAnswer": {"@type": "Answer", "text": "Расчёты проходят через сервис безопасных сделок Домклик. Продавец получает деньги после регистрации перехода права в Росреестре."}}]}</script>
@@ -354,7 +357,10 @@ img{max-width:100%}
         <a class="btn btn-call" href="tel:+79782964108">Позвонить</a>
       </div>
       <p class="phone-big">+7 978 296-41-08</p>
-      <p>Не пользуетесь MAX? <a class="form-link" href="https://forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f/" target="_blank" rel="noopener">Оставьте телефон в короткой форме</a>, я перезвоню.</p>
+      <div class="form-card" id="zayavka">
+        <p class="form-title">Не пользуетесь MAX? Оставьте телефон — я перезвоню</p>
+        <iframe id="ya-form" src="https://forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f/?iframe=1" name="ya-form-6adc777e852af3c4d5fc9a8f" title="Заявка на подбор участка" loading="lazy"></iframe>
+      </div>
     </div>
   </section>
 </main>
@@ -382,18 +388,19 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
 
 
 <script>
-/* Preserve ad attribution in the fallback Yandex Form link; no data is collected here. */
+/* Метки рекламы (utm, yclid) передаём во встроенную Яндекс Форму — в скрытые поля заявки */
 (function () {
   var params = new URLSearchParams(window.location.search);
   var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "yclid"];
-  document.querySelectorAll('a[href^="https://forms.yandex.ru/u/6adc777e852af3c4d5fc9a8f/"]').forEach(function (link) {
-    var url = new URL(link.href);
+  var frame = document.getElementById("ya-form");
+  if (frame) {
+    var url = new URL(frame.src);
     keys.forEach(function (key) {
       var val = params.get(key);
       if (val) url.searchParams.set(key, val.slice(0, 250));
     });
-    link.href = url.toString();
-  });
+    frame.src = url.toString();
+  }
 }());
 </script>
 <!--METRIKA-->
@@ -412,7 +419,10 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
     else if(h.indexOf('tel:')===0) goal('phone_click');
     else if(h.indexOf('forms.yandex.ru')>-1) goal('form_open');
   },true);
+  /* Начал заполнять встроенную форму: фокус ушёл в её окно */
+  var sent=false; window.addEventListener('blur',function(){ if(!sent && document.activeElement && document.activeElement.id==='ya-form'){ sent=true; goal('form_open'); } });
 }());
 </script>
+<script src="https://forms.yandex.ru/_static/embed.js"></script>
 </body>
 </html>
