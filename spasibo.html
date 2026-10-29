@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Заявка отправлена — Мечта у моря</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+@font-face{font-family:"Onest";src:url("assets/fonts/onest-var.woff") format("woff");font-weight:400 700;font-display:swap}
+:root{--sea:#14504f;--sea-deep:#0d3534;--straw:#c9a24a;--chalk:#f6f4ee;--ink:#1c2422;--muted:#5b6662}
+@media (prefers-color-scheme:dark){:root{--chalk:#121816;--ink:#e9ece8;--muted:#a3ada9;--straw:#d9b765}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--chalk);color:var(--ink);font:400 17px/1.6 "Onest",system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px 16px}
+main{max-width:520px;text-align:center}
+h1{font-size:clamp(26px,6vw,36px);line-height:1.2;margin:0 0 12px}
+p{color:var(--muted);margin:0 0 24px}
+.btns{display:flex;flex-direction:column;gap:12px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:999px;font-weight:600;text-decoration:none}
+.max{background:var(--straw);color:#1c2422}
+.back{border:1px solid currentColor;color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Спасибо, заявка у меня</h1>
+  <p>Перезвоню в ближайшее время и пришлю свободные участки с видео. Если удобнее — напишите сразу в MAX.</p>
+  <div class="btns">
+    <a class="btn max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
+    <a class="btn back" href="./">Вернуться к участкам</a>
+  </div>
+</main>
+<!--METRIKA-->
+<script>
+/* Цель «заявка отправлена»: сюда Яндекс Форма перенаправляет после отправки */
+(function(){var t=setInterval(function(){if(window.ym&&window.YM_ID){window.ym(window.YM_ID,'reachGoal','zayavka_otpravlena');clearInterval(t)}},300);setTimeout(function(){clearInterval(t)},8000)}());
+</script>
+</body>
+</html>

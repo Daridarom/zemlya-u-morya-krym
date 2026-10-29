@@ -17,6 +17,7 @@ def main() -> None:
     p.add_argument("--policy-reviewed", action="store_true", help="Юридически согласована политика и оператор")
     p.add_argument("--output", default="dist", help="Папка итоговой сборки")
     p.add_argument("--preview", action="store_true", help="Предпросмотр на домене: страница остаётся закрытой от поисковиков")
+    p.add_argument("--metrika", help="Номер счётчика Яндекс Метрики для этого домена")
     p.add_argument("--alias", action="append", default=[], help="Дополнительный домен, который перенаправляется на основной (можно кириллицей)")
     args = p.parse_args()
     domain = args.domain.strip().lower()
@@ -35,7 +36,24 @@ def main() -> None:
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
-    shutil.copy2(ROOT / "politika.html", out / "politika.html")
+    metrika = ""
+    if args.metrika:
+        if not args.metrika.isdigit():
+            p.error("Номер счётчика Метрики — только цифры")
+        n_ = args.metrika
+        metrika = (
+            f'<script>window.YM_ID={n_};\n'
+            '(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();'
+            'for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}'
+            'k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})'
+            '(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");\n'
+            f'ym({n_},"init",{{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true}});</script>\n'
+            f'<noscript><div><img src="https://mc.yandex.ru/watch/{n_}" style="position:absolute;left:-9999px" alt=""></div></noscript>'
+        )
+    for page in ("politika.html", "spasibo.html"):
+        html = (ROOT / page).read_text(encoding="utf-8").replace("<!--METRIKA-->", metrika)
+        (out / page).write_text(html, encoding="utf-8")
+    shutil.copytree(ROOT / "assets" / "fonts", out / "assets" / "fonts")
     index = (ROOT / "index.html").read_text(encoding="utf-8")
     # GitHub Pages остаётся закрытым от поисковиков: запрет снимается только в отдельной сборке.
     robots = "noindex, nofollow" if args.preview else "index, follow"
@@ -54,6 +72,9 @@ def main() -> None:
             p.error(f"Нет файла {path}")
         (out / path).parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / path, out / path)
+    if args.metrika and "<!--METRIKA-->" not in index:
+        p.error("В странице нет места для счётчика Метрики")
+    index = index.replace("<!--METRIKA-->", metrika)
     (out / "index.html").write_text(index, encoding="utf-8")
     if args.preview:
         (out / "robots.txt").write_text("User-agent: *\nDisallow: /\n", encoding="utf-8")

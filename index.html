@@ -9,16 +9,17 @@
 <meta name="theme-color" content="#0d3534">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Мечта у моря">
 <meta property="og:title" content="Участки у Азовского моря рядом со Щёлкино от 1,2 млн ₽">
 <meta property="og:description" content="4–6 соток в собственность в 50–100 метрах от моря. Закаты в море. Покажу по видео и проведу сделку удалённо.">
 <meta property="og:image" content="https://daridarom.github.io/zemlya-u-morya-krym/assets/photos/hero.webp">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Земля у моря — ООО «Точка притяжения»","telephone":"+7-978-296-41-08","areaServed":["Щёлкино","Ленинский район, Республика Крым","Керчь"],"priceRange":"500 000 – 4 500 000 ₽","image":"https://daridarom.github.io/zemlya-u-morya-krym/assets/photos/hero.webp"}
+{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Мечта у моря — ООО «Точка притяжения»","telephone":"+7-978-296-41-08","areaServed":["Щёлкино","Ленинский район, Республика Крым","Керчь"],"priceRange":"500 000 – 4 500 000 ₽","image":"https://daridarom.github.io/zemlya-u-morya-krym/assets/photos/hero.webp"}
 </script>
 <link rel="preload" as="image" href="assets/photos/hero.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap">
+<link rel="preload" as="font" type="font/woff" href="assets/fonts/onest-var.woff" crossorigin>
 <style>
+@font-face{font-family:"Onest";src:url("assets/fonts/onest-var.woff") format("woff");font-weight:400 700;font-display:swap}
 /* Layout: широкое фото-открытие, дальше — один столбец «разговора» с покупателем, цены — таблица линий от воды к степи */
 :root{
   --sea:#14504f;      /* Азовская вода */
@@ -189,6 +190,12 @@ img{max-width:100%}
 .me-steps b{color:#fff}
 .az-list{margin:0;padding-left:18px;color:var(--muted);display:grid;gap:6px}
 .under-note b{color:var(--ink)}
+.cookie{position:fixed;left:12px;right:12px;bottom:12px;z-index:50;max-width:560px;margin:0 auto;display:flex;gap:12px;align-items:center;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:0 8px 28px rgba(0,0,0,.18);font-size:14px;line-height:1.4}
+.cookie[hidden]{display:none}
+.cookie p{margin:0;flex:1}
+.cookie a{color:inherit}
+.cookie .btn{min-height:40px;padding:0 16px;font-size:14px;flex:none}
+@media (max-width:760px){.cookie{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));padding:8px 10px 8px 14px;font-size:13px}body:has(.dock:not(.off)) .cookie{bottom:calc(78px + env(safe-area-inset-bottom,0px))}}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Почему здесь такие цены?", "acceptedAnswer": {"@type": "Answer", "text": "Восток Крыма пока менее известен, и спрос здесь ниже. Это не скидка за недостатки: все участки в собственности, документы в порядке."}}, {"@type": "Question", "name": "Сколько метров до моря?", "acceptedAnswer": {"@type": "Answer", "text": "Первая линия — 50 метров до воды, вторая и третья — до 100 метров. Точное расстояние до каждого свободного участка покажу на карте и на видео."}}, {"@type": "Question", "name": "Есть ли ограничения на участках?", "acceptedAnswer": {"@type": "Answer", "text": "У части участков есть охранные зоны, например вдоль коммуникаций. Они указаны в выписке ЕГРН, и по каждому участку я скажу об этом заранее, до сделки."}}, {"@type": "Question", "name": "Можно ли посмотреть участок, не приезжая?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Я приеду на участок и покажу его по видео: подъезд, границы, соседей, вид на море. Приехать лично можно позже, перед сделкой."}}, {"@type": "Question", "name": "Есть ли свет и вода?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от участка. По каждому варианту расскажу, что уже подведено и как подключить остальное. С подключением помогаем."}}, {"@type": "Question", "name": "Можно ли построить дом?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от разрешённого использования конкретного участка. По каждому варианту скажу, что можно строить. Если строительство возможно, построим дом под ключ."}}, {"@type": "Question", "name": "Есть ли рассрочка?", "acceptedAnswer": {"@type": "Answer", "text": "Да, до 6 месяцев, первый взнос от 100 000 ₽. Условия по конкретному участку расскажу в разговоре."}}, {"@type": "Question", "name": "Как защищены деньги?", "acceptedAnswer": {"@type": "Answer", "text": "Расчёты проходят через сервис безопасных сделок Домклик. Продавец получает деньги после регистрации перехода права в Росреестре."}}]}</script>
@@ -196,7 +203,7 @@ img{max-width:100%}
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#start">Земля у моря<small>Восточный Крым</small></a>
+    <a class="brand" href="#start">Мечта у моря<small>Восточный Крым</small></a>
     <a class="top-phone" href="tel:+79782964108">+7 978 296-41-08</a>
   </div>
 </header>
@@ -359,6 +366,10 @@ img{max-width:100%}
   </div>
 </footer>
 
+<div class="cookie" id="cookie" hidden>
+  <p>Сайт использует cookies и Яндекс Метрику. <a href="politika.html#cookies">Подробнее</a></p>
+  <button type="button" class="btn btn-call" id="cookie-ok">Понятно</button>
+</div>
 <nav class="dock off" aria-label="Быстрая связь">
   <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
   <a class="btn btn-call" href="tel:+79782964108">Позвонить</a>
@@ -383,6 +394,24 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
     });
     link.href = url.toString();
   });
+}());
+</script>
+<!--METRIKA-->
+<script>
+(function(){
+  /* Плашка cookies: показываем один раз */
+  var c=document.getElementById('cookie'),k='cookie-ok';
+  try{ if(!localStorage.getItem(k)) c.hidden=false; }catch(e){ c.hidden=false; }
+  document.getElementById('cookie-ok').addEventListener('click',function(){ c.hidden=true; try{localStorage.setItem(k,'1')}catch(e){} });
+  /* Цели Метрики: переход в MAX, звонок, открытие формы */
+  function goal(name){ if(window.ym && window.YM_ID) window.ym(window.YM_ID,'reachGoal',name); }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var h=a.getAttribute('href');
+    if(h.indexOf('max.ru')>-1) goal('max_click');
+    else if(h.indexOf('tel:')===0) goal('phone_click');
+    else if(h.indexOf('forms.yandex.ru')>-1) goal('form_open');
+  },true);
 }());
 </script>
 </body>
