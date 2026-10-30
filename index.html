@@ -224,6 +224,8 @@ img{max-width:100%}
 .q-or{margin:4px 0 0;color:var(--muted);font-size:15px}
 .q-links{display:flex;flex-wrap:wrap;gap:8px}
 .q-links .btn{min-height:46px;padding:0 18px;font-size:15px;color:var(--ink)}
+.toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:60;background:#1c2422;color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:calc(100% - 32px);text-align:center}
+.toast[hidden]{display:none}
 </style>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Почему здесь такие цены?", "acceptedAnswer": {"@type": "Answer", "text": "Восток Крыма пока менее известен, и спрос здесь ниже. Это не скидка за недостатки: все участки в собственности, документы в порядке."}}, {"@type": "Question", "name": "Сколько метров до моря?", "acceptedAnswer": {"@type": "Answer", "text": "Первая линия — 50 метров до воды, вторая и третья — до 100 метров. Точное расстояние до каждого свободного участка покажу на карте и на видео."}}, {"@type": "Question", "name": "Есть ли ограничения на участках?", "acceptedAnswer": {"@type": "Answer", "text": "У части участков есть охранные зоны, например вдоль коммуникаций. Они указаны в выписке ЕГРН, и по каждому участку я скажу об этом заранее, до сделки."}}, {"@type": "Question", "name": "Можно ли посмотреть участок, не приезжая?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Я приеду на участок и покажу его по видео: подъезд, границы, соседей, вид на море. Приехать лично можно позже, перед сделкой."}}, {"@type": "Question", "name": "Есть ли свет и вода?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от участка. По каждому варианту расскажу, что уже подведено и как подключить остальное. С подключением помогаем."}}, {"@type": "Question", "name": "Можно ли построить дом?", "acceptedAnswer": {"@type": "Answer", "text": "Зависит от разрешённого использования конкретного участка. По каждому варианту скажу, что можно строить. Если строительство возможно, построим дом под ключ."}}, {"@type": "Question", "name": "Есть ли рассрочка?", "acceptedAnswer": {"@type": "Answer", "text": "Да, до 6 месяцев, первый взнос от 100 000 ₽. Условия по конкретному участку расскажу в разговоре."}}, {"@type": "Question", "name": "Как защищены деньги?", "acceptedAnswer": {"@type": "Answer", "text": "Расчёты проходят через сервис безопасных сделок Домклик. Продавец получает деньги после регистрации перехода права в Росреестре."}}]}</script>
@@ -279,17 +281,17 @@ img{max-width:100%}
         <div class="line">
           <div class="line-no">1<small>линия</small></div>
           <div class="stack" style="gap:8px"><h3>Ближе всего к воде</h3><p class="dist">50 м от моря</p></div>
-          <div class="line-price">2 000 000 ₽<a href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
+          <div class="line-price">2 000 000 ₽<a data-msg="Здравствуйте! Интересует участок у моря: 1-я линия, 50 м от моря, 2 млн ₽. Что сейчас свободно? Пришлите, пожалуйста, видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
         </div>
         <div class="line">
           <div class="line-no">2<small>линия</small></div>
           <div class="stack" style="gap:8px"><h3>Второй ряд от моря</h3><p class="dist">до 100 м от моря</p></div>
-          <div class="line-price">1 500 000 ₽<a href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
+          <div class="line-price">1 500 000 ₽<a data-msg="Здравствуйте! Интересует участок у моря: 2-я линия, до 100 м от моря, 1,5 млн ₽. Что сейчас свободно? Пришлите, пожалуйста, видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
         </div>
         <div class="line">
           <div class="line-no">3<small>линия</small></div>
           <div class="stack" style="gap:8px"><h3>Самый доступный вариант у моря</h3><p class="dist">до 100 м от моря</p></div>
-          <div class="line-price">1 200 000 ₽<a href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
+          <div class="line-price">1 200 000 ₽<a data-msg="Здравствуйте! Интересует участок у моря: 3-я линия, до 100 м от моря, 1,2 млн ₽. Что сейчас свободно? Пришлите, пожалуйста, видео." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Узнать, что свободно</a></div>
         </div>
       </div>
       <p class="under-note"><b>Рассрочка до 6 месяцев,</b> первый взнос от 100 000 ₽.</p>
@@ -325,7 +327,7 @@ img{max-width:100%}
         <a class="btn btn-max q-form" href="#zayavka">Оставить телефон</a>
         <p class="q-or">Перезвоню и пришлю подборку. Или напишите сами:</p>
         <div class="q-links">
-          <a class="btn btn-call" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">MAX</a>
+          <a class="btn btn-call q-max" data-msg="Здравствуйте! Хочу подобрать участок." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">MAX</a>
           <a class="btn btn-call" href="https://t.me/+79782964108" target="_blank" rel="noopener">Telegram</a>
           <a class="btn btn-call" href="tel:+79782964108">+7 978 296-41-08</a>
         </div>
@@ -441,6 +443,7 @@ img{max-width:100%}
   <p>Можно мы будем собирать статистику посещений через Яндекс Метрику (cookies)? <a href="politika.html#cookies">Подробнее</a></p>
   <div class="cookie-btns"><button type="button" class="btn btn-call" id="cookie-no">Нет</button><button type="button" class="btn btn-max" id="cookie-ok">Принять</button></div>
 </div>
+<div class="toast" id="toast" role="status" hidden>Текст скопирован — вставьте его в чат</div>
 <nav class="dock off" aria-label="Быстрая связь">
   <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
   <a class="btn btn-call" href="tel:+79782964108">Позвонить</a>
@@ -480,6 +483,15 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
   document.getElementById('cookie-ok').addEventListener('click',function(){ answer('yes'); });
   document.getElementById('cookie-no').addEventListener('click',function(){ answer('no'); });
   document.getElementById('cookie-settings').addEventListener('click',function(e){ e.preventDefault(); c.hidden=false; });
+  /* Готовый текст для MAX: копируем по нажатию, человек вставляет его в чат */
+  var t=document.getElementById('toast'),tt;
+  function shown(){ t.hidden=false; clearTimeout(tt); tt=setTimeout(function(){t.hidden=true},4000); }
+  function fallback(m){ try{ var x=document.createElement('textarea'); x.value=m; x.setAttribute('readonly',''); x.style.position='fixed'; x.style.opacity='0'; document.body.appendChild(x); x.select(); x.setSelectionRange(0,m.length); var ok=document.execCommand('copy'); document.body.removeChild(x); if(ok) shown(); }catch(err){} }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest && e.target.closest('a[data-msg]'); if(!a) return;
+    var m=a.getAttribute('data-msg');
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(m).then(shown,function(){ fallback(m); }); } else { fallback(m); }
+  },true);
   /* Цели Метрики: переход в MAX, звонок, открытие формы */
   function goal(name){ if(window.ym && window.YM_ID) window.ym(window.YM_ID,'reachGoal',name); }
   document.addEventListener('click',function(e){
@@ -520,6 +532,7 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
     var r=R[key]; root.querySelector('.q-title').textContent=r.t; root.querySelector('.q-desc').textContent=r.d;
     var B={lt1:'до 1 млн ₽','1to2':'1–2 млн ₽',gt2:'больше 2 млн ₽'}[a.budget];
     root.podbor=r.t+' | бюджет: '+B;
+    root.querySelector('.q-max').setAttribute('data-msg','Здравствуйте! Прошёл подбор на сайте: '+r.t+', бюджет '+B+'. Пришлите, пожалуйста, свободные варианты и видео.');
     show('res'); goal('quiz_done'); res.scrollIntoView({behavior:'smooth',block:'nearest'});
   });
 }());
