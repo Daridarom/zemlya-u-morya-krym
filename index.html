@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Участки у моря рядом со Щёлкино от 1,2 млн ₽ — 50 м до Азовского моря</title>
+<title>Участки у моря в Крыму рядом со Щёлкино от 1,2 млн ₽ — Мечта у моря</title>
 <meta name="description" content="Участки 4–6 соток в 50–100 метрах от Азовского моря рядом со Щёлкино, Восточный Крым. Первая линия 2 млн ₽, третья 1,2 млн ₽. Земля в собственности, видеопоказ, сделка через Домклик, рассрочка.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0d3534">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Мечта у моря">
-<meta property="og:title" content="Участки у Азовского моря рядом со Щёлкино от 1,2 млн ₽">
+<meta property="og:title" content="Участки у Азовского моря в Крыму, рядом со Щёлкино, от 1,2 млн ₽">
 <meta property="og:description" content="4–6 соток в собственность в 50–100 метрах от моря, рядом с бухтой Космонавтов. Покажу по видео и проведу сделку удалённо.">
 <meta property="og:image" content="https://daridarom.github.io/zemlya-u-morya-krym/assets/photos/hero.webp">
 <script type="application/ld+json">
@@ -330,10 +330,10 @@ img{max-width:100%}
         <p class="q-or">Перезвоню и пришлю подборку. Или напишите сами:</p>
         <div class="q-links">
           <a class="btn btn-call q-max" data-msg="Здравствуйте! Хочу подобрать участок." href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">📋 MAX</a>
-          <a class="btn btn-call" href="https://t.me/+79782964108" target="_blank" rel="noopener">Telegram</a>
+          <a class="btn btn-call q-tg" data-msg="Здравствуйте! Хочу подобрать участок." href="https://t.me/+79782964108" target="_blank" rel="noopener">📋 Telegram</a>
           <a class="btn btn-call" href="tel:+79782964108">+7 978 296-41-08</a>
         </div>
-        <p class="copy-hint">📋 MAX — ваш запрос скопируется, останется вставить в чат.</p>
+        <p class="copy-hint">📋 Ваш запрос скопируется — в MAX или Telegram останется вставить его в чат.</p>
         <button type="button" class="q-reset">Пройти заново</button>
       </div>
     </div>
@@ -446,7 +446,7 @@ img{max-width:100%}
   <p>Можно мы будем собирать статистику посещений через Яндекс Метрику (cookies)? <a href="politika.html#cookies">Подробнее</a></p>
   <div class="cookie-btns"><button type="button" class="btn btn-call" id="cookie-no">Нет</button><button type="button" class="btn btn-max" id="cookie-ok">Принять</button></div>
 </div>
-<div class="toast" id="toast" role="status" hidden>Запрос скопирован. В чате MAX нажмите на поле ввода → «Вставить»</div>
+<div class="toast" id="toast" role="status" hidden>Запрос скопирован. В чате нажмите на поле ввода → «Вставить»</div>
 <nav class="dock off" aria-label="Быстрая связь">
   <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Написать в MAX</a>
   <a class="btn btn-call" href="tel:+79782964108">Позвонить</a>
@@ -536,6 +536,7 @@ document.querySelectorAll('.hero,.final').forEach(function(el){io.observe(el)})}
     var B={lt1:'до 1 млн ₽','1to2':'1–2 млн ₽',gt2:'больше 2 млн ₽'}[a.budget];
     root.podbor=r.t+' | бюджет: '+B;
     root.querySelector('.q-max').setAttribute('data-msg','Здравствуйте! Прошёл подбор на сайте: '+r.t+', бюджет '+B+'. Пришлите, пожалуйста, свободные варианты и видео.');
+    root.querySelector('.q-tg').setAttribute('data-msg','Здравствуйте! Прошёл подбор на сайте: '+r.t+', бюджет '+B+'. Пришлите, пожалуйста, свободные варианты и видео.');
     show('res'); goal('quiz_done'); res.scrollIntoView({behavior:'smooth',block:'nearest'});
   });
 }());
