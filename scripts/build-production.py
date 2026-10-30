@@ -92,8 +92,12 @@ def main() -> None:
     (out / ".htaccess").write_text(
         "AddDefaultCharset UTF-8\n"
         "RewriteEngine On\n"
+        "# Всё (http, www, зеркала) одним 301 на https://основной домен, путь и метки сохраняются\n"
         f"RewriteCond %{{HTTP_HOST}} !^{re.escape(domain)}$ [NC]\n"
-        f"RewriteRule ^(.*)$ %{{REQUEST_SCHEME}}://{domain}/$1 [R=301,L]\n"
+        f"RewriteRule ^(.*)$ https://{domain}/$1 [R=301,L]\n"
+        "RewriteCond %{HTTP:X-Forwarded-Proto} !=https\n"
+        "RewriteCond %{HTTPS} !=on\n"
+        f"RewriteRule ^(.*)$ https://{domain}/$1 [R=301,L]\n"
         "<IfModule mod_expires.c>\nExpiresActive On\nExpiresByType image/webp \"access plus 30 days\"\n</IfModule>\n"
         f"# Зеркала: {', '.join(hosts[1:]) or 'нет'}\n",
         encoding="utf-8",
