@@ -90,15 +90,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .why-grid div{display:grid;gap:8px;align-content:start;border-top:2px solid var(--sea);padding-top:16px}
 .why-grid p{color:var(--muted);font-size:15.5px}
 /* как проверить нас */
-.check{border-top:1px solid var(--line)}
-.check-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin-top:36px}
+.check{border-top:1px solid var(--line);padding-block:clamp(44px,7vw,80px);scroll-margin-top:62px}
+.check-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin-top:28px}
 .check-grid div{display:grid;gap:8px;align-content:start;border-top:2px solid var(--straw);padding-top:16px}
 .check-grid p{color:var(--muted);font-size:15.5px}
 .check-grid .num{font:700 13px var(--body);letter-spacing:.12em;color:var(--sea)}
 .check-grid a{color:var(--sea);font-weight:600}
-.check-note{margin-top:26px;font-size:14px;color:var(--muted);max-width:70ch}
 @media (max-width:1000px){.check-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:760px){.check-grid{grid-template-columns:1fr;gap:22px}}
+@media (max-width:760px){.check-grid{grid-template-columns:1fr 1fr;gap:20px 14px}.check-grid h3{font-size:16px}.check-grid p{font-size:14px;line-height:1.5}}
+@media (max-width:340px){.check-grid{grid-template-columns:1fr}}
 
 /* цены */
 .prices{background:var(--card)}
@@ -392,8 +392,7 @@ img{max-width:100%}
         <ol class="me-steps">
           <li><b>Подбор.</b> Вы пишете бюджет, я присылаю подходящие участки.</li>
           <li><b>Видеопоказ.</b> Еду на участок и показываю подъезд, соседей и вид.</li>
-          <li><b>Документы.</b> Присылаю выписку ЕГРН до сделки.</li>
-          <li><b>Сделка.</b> Безопасные расчёты через Домклик, регистрация в Росреестре.</li>
+          <li><b>Документы и сделка.</b> Выписка ЕГРН до сделки, расчёты через Домклик. <a href="#proverka" style="color:#e7c873">Как нас проверить ↓</a></li>
         </ol>
         <div class="btns" style="margin-top:6px"><a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOLz-leCnvMTNQNCGHl_K2LRundalWSaDo_sZQo77Q3Mp65kQ8g" target="_blank" rel="noopener">Получить варианты в MAX</a></div>
       </div>
@@ -404,16 +403,14 @@ img{max-width:100%}
     <div class="wrap">
       <div class="stack">
         <p class="label">Как проверить нас до сделки</p>
-        <h2>Не верьте на слово — проверьте сами за пять минут</h2>
-        <p class="lead">Всё, что ниже, можно проверить в государственных сервисах, ещё до звонка и до встречи.</p>
+        <h2>Не верьте на слово — проверьте сами</h2>
       </div>
       <div class="check-grid">
-        <div><span class="num">01 · ПРОДАВЕЦ</span><h3>Юрлицо, а не частник</h3><p>ООО «Точка притяжения», ИНН&nbsp;9111030208, ОГРН&nbsp;1239100010731. Введите ИНН на <a href="https://egrul.nalog.ru/" target="_blank" rel="noopener">сайте налоговой</a> — увидите дату регистрации и руководителя.</p></div>
-        <div><span class="num">02 · УЧАСТОК</span><h3>Кадастровый номер — до встречи</h3><p>Пришлю номер выбранного участка. Найдите его на <a href="https://nspd.gov.ru/map" target="_blank" rel="noopener">публичной кадастровой карте</a>: площадь, границы, вид использования.</p></div>
-        <div><span class="num">03 · ДОГОВОР</span><h3>Сначала договор, потом деньги</h3><p>Подписываем предварительный договор купли-продажи. Первый взнос по рассрочке — только после него.</p></div>
-        <div><span class="num">04 · РАСЧЁТЫ</span><h3>Деньги через Домклик</h3><p>Сервис безопасных расчётов: продавец получает деньги только после регистрации права в Росреестре.</p></div>
+        <div><span class="num">01</span><h3>Продавец — юрлицо</h3><p>ООО «Точка притяжения», ИНН&nbsp;9111030208. Проверьте на <a href="https://egrul.nalog.ru/" target="_blank" rel="noopener">сайте налоговой</a>.</p></div>
+        <div><span class="num">02</span><h3>Номер участка</h3><p>Пришлю кадастровый номер и выписку ЕГРН. Сверьте на <a href="https://nspd.gov.ru/map" target="_blank" rel="noopener">кадастровой карте</a>.</p></div>
+        <div><span class="num">03</span><h3>Сначала договор</h3><p>Предварительный договор купли-продажи. Взнос по рассрочке — только после него.</p></div>
+        <div><span class="num">04</span><h3>Деньги через Домклик</h3><p>Продавец получает деньги после регистрации права в Росреестре.</p></div>
       </div>
-      <p class="check-note">Налоговая, кадастровая карта и Росреестр — государственные сервисы, на их данные мы не влияем. Выписку ЕГРН по участку пришлю до сделки.</p>
     </div>
   </section>
 
