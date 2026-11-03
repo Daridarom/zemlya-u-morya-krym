@@ -1,2 +1,5 @@
+User-agent: YandexDirect
+Allow: /
+
 User-agent: *
 Disallow: /
